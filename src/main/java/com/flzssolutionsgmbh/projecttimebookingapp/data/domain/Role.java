@@ -1,6 +1,8 @@
-package com.flzssolutionsgmbh.projecttimebookingapp.Entities;
+package com.flzssolutionsgmbh.projecttimebookingapp.data.domain;
+
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import java.util.List;
 
@@ -11,11 +13,13 @@ public class Role {
 
     @ManyToMany(mappedBy = "roles")
     private List<User> users;
-
+    @Id
+    private String id;
 
 
     public Role() {
     }
+
 
     public Role(String name) {
         this.name = name;
@@ -43,4 +47,13 @@ public class Role {
     public void setUsers(List<User> users) {
         this.users = users;
     }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
 }
+

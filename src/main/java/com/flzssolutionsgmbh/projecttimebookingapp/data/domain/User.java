@@ -1,8 +1,7 @@
-package com.flzssolutionsgmbh.projecttimebookingapp.Entities;
+package com.flzssolutionsgmbh.projecttimebookingapp.data.domain;
 
 import javax.persistence.*;
 import java.util.List;
-
 
 @Entity
 public class User {
@@ -21,6 +20,9 @@ public class User {
     private List<Role> roles;
 
 
+    public User() {
+
+    }
 
 
     public User(String email, String fn, String ln, String password) {
@@ -29,6 +31,8 @@ public class User {
         this.ln = ln;
         this.password = password;
     }
+
+
 
     public String getEmail() {
         return email;
@@ -53,36 +57,5 @@ public class User {
     public void setLn(String ln) {
         this.ln = ln;
     }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public List<Project> getProjectList() {
-        return projectList;
-    }
-
-    public void setProjectList(List<Project> projectList) {
-        this.projectList = projectList;
-    }
-
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
-    }
-
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
-    }
 }
+
