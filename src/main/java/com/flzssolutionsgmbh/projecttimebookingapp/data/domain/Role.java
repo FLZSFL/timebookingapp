@@ -9,12 +9,15 @@ import java.util.List;
 @Entity
 public class Role {
 
+    @Id
+    private String id;
+
     private String name;
+
 
     @ManyToMany(mappedBy = "roles")
     private List<User> users;
-    @Id
-    private String id;
+
 
 
     public Role() {

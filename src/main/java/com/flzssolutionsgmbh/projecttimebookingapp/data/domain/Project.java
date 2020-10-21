@@ -13,8 +13,11 @@ public class Project {
     @GeneratedValue
     private Long id;
     private String date;
-    private String startTime;
-    private String endTime;
+    private Double hoursSpent;
+    private Double minutesSpent;
+
+
+
     private String activityDescription;
 
     @ManyToOne
@@ -42,20 +45,20 @@ public class Project {
         this.date = date;
     }
 
-    public String getStartTime() {
-        return startTime;
+    public Double getHoursSpent() {
+        return hoursSpent;
     }
 
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
+    public void setHoursSpent(Double hoursSpent) {
+        this.hoursSpent = hoursSpent;
     }
 
-    public String getEndTime() {
-        return endTime;
+    public Double getMinutesSpent() {
+        return minutesSpent;
     }
 
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
+    public void setMinutesSpent(Double minutesSpent) {
+        this.minutesSpent = minutesSpent;
     }
 
     public String getActivityDescription() {

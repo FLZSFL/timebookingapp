@@ -1,20 +1,31 @@
 package com.flzssolutionsgmbh.projecttimebookingapp.data.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
+
 
 @Entity
 public class User {
 
     @Id
+    @GeneratedValue
+    private Long id;
+
+    @Email(message = "Please provide a valid e-mail")
+    @NotEmpty(message = "Please provide an e-mail")
     private String email;
     private String fn;
     private String ln;
+    @org.springframework.data.annotation.Transient //will not be serialized
     private String password;
     private String company;
 
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Project> projectList;
+
 
     @ManyToMany
     private List<Role> roles;
@@ -60,7 +71,9 @@ public class User {
 
 
     public String getPassword() {
-        return password;
+        String transientPassword = this.password;
+        this.password = null;
+        return transientPassword;
     }
 
     public void setPassword(String password) {
