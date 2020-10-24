@@ -1,8 +1,6 @@
 package com.flzssolutionsgmbh.projecttimebookingapp.data.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 
@@ -13,8 +11,7 @@ public class User {
     @GeneratedValue
     private Long id;
 
-    @Email(message = "Please provide a valid e-mail")
-    @NotEmpty(message = "Please provide an e-mail")
+
     private String email;
     private String fn;
     private String ln;
