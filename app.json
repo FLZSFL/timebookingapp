@@ -1,0 +1,12 @@
+{
+  "name": "projectbookingapp",
+  "description": "Minimal Agency Customer Relationship Management Demo APP",
+  "website": "",
+  "env": {
+    "TOKEN_SECRET": {
+      "description": "A secret key for verifying the integrity of JWT.",
+      "generator": "secret"
+    }
+  },
+  "addons": [ "heroku-postgresql" ]
+}
