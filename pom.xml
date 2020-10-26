@@ -76,11 +76,6 @@
             <version>5.4.21.Final</version>
         </dependency>
         <dependency>
-            <groupId>com.flzssolutionsgmbh</groupId>
-            <artifactId>projecttimebookingapp</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
             <version>5.3.4.RELEASE</version>
