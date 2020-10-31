@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class UserService {
@@ -35,6 +36,15 @@ public class UserService {
         roles.add(userRole);
         user.setRoles(roles);
         userRepository.save(user);
+    }
+
+    //Credit to https://stackoverflow.com/questions/12974322/does-anyone-know-a-library-containing-all-localized-country-names-in-java/12975050
+    public void generateCountries(){
+        Locale locale = Locale.ENGLISH;
+        for (String country : Locale.getISOCountries()){
+            System.out.println(new Locale("", country).getDisplayCountry(locale));
+        }
+        System.out.println("Not Listed");
     }
 
 

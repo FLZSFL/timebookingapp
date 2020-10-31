@@ -1,9 +1,7 @@
 package com.flzssolutionsgmbh.projecttimebookingapp.data.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Project {
@@ -12,9 +10,12 @@ public class Project {
     @Id
     @GeneratedValue
     private Long id;
-    private String date;
+    private String name;
+    //Formatting the Date
+    @Temporal(TemporalType.DATE)
+    private Date date;
     private Double hoursSpent;
-    private Double minutesSpent;
+
 
 
 
@@ -37,11 +38,11 @@ public class Project {
         this.id = id;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -51,14 +52,6 @@ public class Project {
 
     public void setHoursSpent(Double hoursSpent) {
         this.hoursSpent = hoursSpent;
-    }
-
-    public Double getMinutesSpent() {
-        return minutesSpent;
-    }
-
-    public void setMinutesSpent(Double minutesSpent) {
-        this.minutesSpent = minutesSpent;
     }
 
     public String getActivityDescription() {
@@ -75,5 +68,13 @@ public class Project {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

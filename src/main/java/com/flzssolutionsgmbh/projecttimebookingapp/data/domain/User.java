@@ -11,10 +11,14 @@ public class User {
     @GeneratedValue
     private Long id;
 
-
+    @Column(nullable = false)
     private String email;
     private String fn;
     private String ln;
+    private String adress;
+    private String city;
+    private String country;
+
     @org.springframework.data.annotation.Transient //will not be serialized
     private String password;
     private String company;
