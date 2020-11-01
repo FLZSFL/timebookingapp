@@ -51,7 +51,7 @@
                         <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="What are you working on?">
                             <div class="input-group-append"></div>
                         </div>
-                    </form><i class="fas fa-plus-circle" data-toggle="tooltip" data-bs-tooltip="" style="margin: 16px;padding: 16px;"></i><i class="fas fa-tag" data-toggle="tooltip" data-bs-tooltip="" style="margin: 16px;padding: 16px;"></i><i class="fas fa-dollar-sign fa-fw"
+                    </form><i class="fas fa-plus-circle" id="circle" data-toggle="tooltip" data-bs-tooltip="" style="margin: 16px;padding: 16px;"></i><i class="fas fa-tag" data-toggle="tooltip" data-bs-tooltip="" style="margin: 16px;padding: 16px;"></i><i class="fas fa-dollar-sign fa-fw"
                         style="width: 48px;height: 48px;margin: 16px;padding: 16px;"></i><span class="text-monospace text-dark text-xs" style="margin: 16px;padding: 16px;"><strong>00:00:00</strong></span>
                     <ul class="nav navbar-nav flex-nowrap ml-auto">
                         <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><i class="fas fa-search"></i></a>
@@ -164,7 +164,30 @@
     <script language="JavaScript">
         $("document").ready(function (){
             $("body").append("<h1>Testing something JQuery</h1>");
+
+            var newText = $("<p>");
+            newText.append("<h1>I just adjusted something");
+
+            $("#circle").on("click", function(){
+                console.log("Appended");
+                $("body").append("<h1>Appended</h1>");
+            });
+
+            $("#circle").hover(testingFunction);
+
+            function testingFunction(){
+                $(this).toggleClass("font-weight-bold");
+
+            };
+
+
+
+            $(".input-group-append:first").append("click the button yeye");
+            $(".input-group-append:first").css("border", "5px dotted yellow")
         });
+
+
+
 
     </script>
 </body>
