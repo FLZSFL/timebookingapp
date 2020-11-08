@@ -9,6 +9,7 @@ public class ProjecttimebookingappApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ProjecttimebookingappApplication.class, args);
+
     }
 
 }

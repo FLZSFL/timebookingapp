@@ -35,6 +35,9 @@ public class ProjectService {
     }
 
     public void updateProject(Project project, Long id){
+        if(project.getName()==null){
+
+        }
         projectRepository.findById(id);
     }
 
@@ -42,10 +45,13 @@ public class ProjectService {
         projectRepository.findByName(project.getName());
     }
 
-    //Returning all projects in the DB
-    public List<Project> getAllProjects(List<Project> projects){
-        return projectRepository.findAll(projects);
+
+    //For dashboard
+    public Long getAllProjectsNumber(){
+        return projectRepository.countAllByActiveIsTrue();
     }
+
+
 
     //Find all projects defined by User
     public List<Project> findUserProject(User user){

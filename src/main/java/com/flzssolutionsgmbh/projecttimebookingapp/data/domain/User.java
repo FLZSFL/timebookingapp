@@ -25,8 +25,6 @@ public class User {
 
     @org.springframework.data.annotation.Transient //will not be serialized
     private String password;
-    private String company;
-
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Project> projectList;

@@ -11,18 +11,30 @@ public class Project {
     @GeneratedValue
     private Long id;
     private String name;
+    private boolean active;
+
+
     //Formatting the Date
     @Temporal(TemporalType.DATE)
     private Date startTime;
+
     @Temporal( TemporalType.DATE)
     private Date endTime;
 
+    //time spent for the project on particular day
+    @Temporal(TemporalType.DATE)
+    private Date timeSpent;
+
+    //total spent time for project
+    @Temporal(TemporalType.DATE)
+    private Date timeSpentTotal;
 
 
 
 
 
 
+    //description of what have been done on "time spent"
     private String activityDescription;
 
     @ManyToOne
@@ -30,9 +42,8 @@ public class Project {
 
 
     public Project() {
+        active = true;
     }
-
-
 
     public Long getId() {
         return id;
@@ -80,5 +91,13 @@ public class Project {
 
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
+    }
+
+    public Date getTimeSpent() {
+        return timeSpent;
+    }
+
+    public void setTimeSpent(Date timeSpent) {
+        this.timeSpent = timeSpent;
     }
 }
