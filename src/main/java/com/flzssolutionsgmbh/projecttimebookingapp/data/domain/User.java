@@ -1,6 +1,8 @@
 package com.flzssolutionsgmbh.projecttimebookingapp.data.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 
@@ -12,6 +14,8 @@ public class User {
     private Long id;
 
     @Column(nullable = false)
+    @Email
+    @NotEmpty
     private String email;
     private String fn;
     private String ln;

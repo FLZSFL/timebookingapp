@@ -13,8 +13,12 @@ public class Project {
     private String name;
     //Formatting the Date
     @Temporal(TemporalType.DATE)
-    private Date date;
-    private Double hoursSpent;
+    private Date startTime;
+    @Temporal( TemporalType.DATE)
+    private Date endTime;
+
+
+
 
 
 
@@ -38,20 +42,12 @@ public class Project {
         this.id = id;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getStartTime() {
+        return startTime;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public Double getHoursSpent() {
-        return hoursSpent;
-    }
-
-    public void setHoursSpent(Double hoursSpent) {
-        this.hoursSpent = hoursSpent;
+    public void setStartTime(Date date) {
+        this.startTime = date;
     }
 
     public String getActivityDescription() {
@@ -76,5 +72,13 @@ public class Project {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 }
