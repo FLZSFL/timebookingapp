@@ -1,20 +1,14 @@
+server:
+  port: 8080
 spring:
+  h2:
+    console:
+      enabled: true
+      path: /console
   datasource:
-    url: ${JDBC_DATABASE_URL}
-    username: ${JDBC_DATABASE_USERNAME}
-    password: ${JDBC_DATABASE_PASSWORD}
-  jpa:
-    properties:
-      hibernate:
-        jdbc:
-          lob:
-            non_contextual_creation: true
-    hibernate:
-      ddl-auto: update
-
-security:
-  token:
-    secret: ${TOKEN_SECRET}
+    url: jdbc:h2:file:./data/database
+    username: sa
+    password: sa
 
 
 
