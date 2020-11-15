@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Table - Brand</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="assets/css/Bootstrap-Calendar.css">
+    <link rel="stylesheet" href="assets/css/ebs-bootstrap-datepicker-1.css">
+    <link rel="stylesheet" href="assets/css/ebs-bootstrap-datepicker-2.css">
+    <link rel="stylesheet" href="assets/css/ebs-bootstrap-datepicker-3.css">
+    <link rel="stylesheet" href="assets/css/ebs-bootstrap-datepicker-4.css">
+    <link rel="stylesheet" href="assets/css/ebs-bootstrap-datepicker.css">
+    <link rel="stylesheet" href="assets/css/Form-Select---Full-Date---Month-Day-Year.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.css">
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background: rgb(187,190,200);">
+            <div class="container-fluid d-flex flex-column p-0">
+                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+                    <div class="sidebar-brand-icon rotate-n-15"><i class="icon-book-open"></i></div>
+                    <div class="sidebar-brand-text mx-3"><span>ProjectBook</span></div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <ul class="nav navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item">
+                        <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="height: 52px;"><img class="border rounded-circle img-profile" src="assets/img/avatars/avatar5.jpeg"><span class="d-none d-lg-inline mr-2 text-gray-600 small" style="color: rgb(255,255,255);font-size: 13.6px;border-style: none;text-align: left;margin: 0px;width: 224px;height: 52px;padding: 16px;"><strong>USER</strong></span></a>
+                            <div
+                                class="dropdown-menu shadow dropdown-menu-right animated--grow-in"><a class="dropdown-item" href="profile.html"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a>
+                                <div class="dropdown-divider"></div><a class="dropdown-item" href="logout.html"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a></div>
+            </div>
+            </li>
+            <li class="nav-item"></li>
+            <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="fas fa-tachometer-alt"></i><span>DASHBOARD</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fas fa-user"></i><span>PROFILE</span></a></li>
+            <li class="nav-item"><a class="nav-link active" href="projectpage.html"><i class="icon ion-ios-paper-outline"></i>PROJECTS<span></span></a></li>
+            <li class="nav-item"></li>
+            <li class="nav-item"></li>
+            <li class="nav-item"><a class="nav-link" href="logout.html"><i class="far fa-user-circle"></i><span>LOGOUT</span></a></li>
+            </ul>
+            <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
+    </div>
+    </nav>
+    <div class="d-flex flex-column" id="content-wrapper">
+        <div id="content">
+            <div class="container-fluid">
+                <h1 class="text-dark mb-4"></h1>
+                <div class="card shadow">
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 font-weight-bold"></p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 text-nowrap">
+                                <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label>Show&nbsp;<select class="form-control form-control-sm custom-select custom-select-sm"><option value="10" selected="">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>&nbsp;</label></div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-md-right dataTables_filter" id="dataTable_filter"></div>
+                            </div>
+                        </div>
+                        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                            <table class="table my-0" id="dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Start date</th>
+                                        <th>End date</th>
+                                        <th>Time spent</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>33</td>
+                                        <td>Airi Satou</td>
+                                        <td>2008/11/28</td>
+                                        <td>2008/11/28</td>
+                                        <td>00:00:00</td>
+                                        <td><button class="btn btn-primary" type="button">Book</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>47</td>
+                                        <td>Angelica Ramos</td>
+                                        <td>2009/10/09<br></td>
+                                        <td>2009/10/09<br></td>
+                                        <td>00:00:00<br></td>
+                                        <td><button class="btn btn-primary" type="button">Book</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>66</td>
+                                        <td>Ashton Cox</td>
+                                        <td>2009/01/12<br></td>
+                                        <td>2009/01/12<br></td>
+                                        <td>00:00:00<br></td>
+                                        <td><button class="btn btn-primary" type="button">Book</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>41</td>
+                                        <td>Bradley Greer</td>
+                                        <td>2012/10/13<br></td>
+                                        <td>2012/10/13<br></td>
+                                        <td>00:00:00<br></td>
+                                        <td><button class="btn btn-primary" type="button">Book</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>28</td>
+                                        <td>Brenden Wagner</td>
+                                        <td>2011/06/07<br></td>
+                                        <td>2011/06/07<br></td>
+                                        <td>00:00:00<br></td>
+                                        <td><button class="btn btn-primary" type="button">Book</button>
+                                            <div class="modal fade" role="dialog" tabindex="-1">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Modal Title</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                                        <div class="modal-body">
+                                                            <p>The content of your modal.</p>
+                                                        </div>
+                                                        <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary" type="button">Save</button></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>61</td>
+                                        <td>Brielle Williamson</td>
+                                        <td>2012/12/02<br></td>
+                                        <td>2012/12/02<br></td>
+                                        <td>00:00:00<br></td>
+                                        <td><button class="btn btn-primary" type="button">Book</button>
+                                            <div class="modal fade" role="dialog" tabindex="-1">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h6 class="modal-title">Time tracking</h6><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                                                        <div class="modal-body">
+                                                            <div class="container">
+                                                                <div class="row">
+                                                                    <div class="col col-sm-6">
+                                                                        <div class="form-group">
+                                                                            <div id="datetimepicker1" class="input-group date"><input type="text" class="form-control"><span class="input-group-addon">&nbsp;<span class="glyphicon glyphicon-calendar"></span></span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">Close</button><button class="btn btn-primary" type="button">Save</button></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>38</td>
+                                        <td>Bruno Nash<br></td>
+                                        <td>2011/05/03<br></td>
+                                        <td>2011/05/03<br></td>
+                                        <td>00:00:00<br></td>
+                                        <td><button class="btn btn-primary" type="button">Book</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>21</td>
+                                        <td>Caesar Vance</td>
+                                        <td>2011/12/12<br></td>
+                                        <td>2011/12/12<br></td>
+                                        <td>00:00:00<br></td>
+                                        <td><button class="btn btn-primary" type="button">Book</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>46</td>
+                                        <td>Cara Stevens</td>
+                                        <td>2011/12/06<br></td>
+                                        <td>2011/12/06<br></td>
+                                        <td>00:00:00<br></td>
+                                        <td><button class="btn btn-primary" type="button">Book</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>22</td>
+                                        <td>Cedric Kelly</td>
+                                        <td>2012/03/29<br></td>
+                                        <td>2012/03/29<br></td>
+                                        <td>00:00:00<br></td>
+                                        <td><button class="btn btn-primary" type="button">Book</button></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td><strong>ID</strong></td>
+                                        <td><strong>Name</strong></td>
+                                        <td><strong>Start date</strong></td>
+                                        <td><strong>End date</strong></td>
+                                        <td>Time spent</td>
+                                        <td></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 align-self-center">
+                                <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
+                            </div>
+                            <div class="col-md-6">
+                                <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                    <ul class="pagination">
+                                        <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="bg-white sticky-footer">
+            <div class="container my-auto">
+                <div class="text-center my-auto copyright"><span>Copyright © BIT Learning 2020</span></div>
+            </div>
+        </footer>
+    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/chart.min.js"></script>
+    <script src="assets/js/bs-init.js"></script>
+    <script src="assets/js/Bootstrap-DateTime-Picker-1.js"></script>
+    <script src="assets/js/Bootstrap-DateTime-Picker-2.js"></script>
+    <script src="assets/js/Bootstrap-DateTime-Picker.js"></script>
+    <script src="assets/js/Date-Range-Picker.js"></script>
+    <script src="assets/js/ebs-bootstrap-datepicker-1.js"></script>
+    <script src="assets/js/ebs-bootstrap-datepicker.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.es.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+    <script src="assets/js/My-Date-Picker.js"></script>
+    <script src="assets/js/theme.js"></script>
+</body>
+
+</html>
