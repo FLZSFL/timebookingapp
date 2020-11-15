@@ -11,7 +11,7 @@ public class IndexController {
 
     @GetMapping
     public String getIndexPage(){
-        return "index.html";
+        return "dashboard.html";
     }
 
 }

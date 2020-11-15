@@ -11,5 +11,4 @@ public class ProjecttimebookingappApplication {
         SpringApplication.run(ProjecttimebookingappApplication.class, args);
 
     }
-
 }
