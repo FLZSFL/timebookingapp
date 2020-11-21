@@ -120,6 +120,8 @@
         </footer>
     </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
 
+
+<!--Modal for booking time-->
 <div id="bookModal" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -131,6 +133,7 @@
             </div>
             <div class="modal-body">
                 <input type="hidden" id="projectId" value="" />
+                <!--In the modal we are able to give in the p with the hours-->
                 <p>Please enter hours spent: <input type="text" id="hours" value="" /></p>
             </div>
             <div class="modal-footer">
@@ -169,6 +172,8 @@
 
         console.log('Saving ' + hours + ' hours for project ID ' + projectId);
 
+
+        <!--Communicates with the js-function -->
         bookProject(
             projectId,
             hours,
