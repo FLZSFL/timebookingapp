@@ -21,6 +21,7 @@ public class Project {
     @Temporal( TemporalType.DATE)
     private Date endTime;
 
+    /*
     //time spent for the project on particular day
     @Temporal(TemporalType.DATE)
     private Date timeSpent;
@@ -28,7 +29,9 @@ public class Project {
     //total spent time for project
     @Temporal(TemporalType.DATE)
     private Date timeSpentTotal;
+     */
 
+    private Long timeSpent;
 
 
 
@@ -92,7 +95,7 @@ public class Project {
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
-
+    /*
     public Date getTimeSpent() {
         return timeSpent;
     }
@@ -100,4 +103,14 @@ public class Project {
     public void setTimeSpent(Date timeSpent) {
         this.timeSpent = timeSpent;
     }
+    */
+
+    public Long getTimeSpent() {
+        return timeSpent;
+    }
+
+    public void setTimeSpent(Long timeSpent) {
+        this.timeSpent = timeSpent;
+    }
+
 }

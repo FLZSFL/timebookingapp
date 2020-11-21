@@ -10,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 
 /**/
@@ -49,6 +50,23 @@ public class ProjectService {
     //For dashboard
     public Long getAllProjectsNumber(){
         return projectRepository.countAllByActiveIsTrue();
+    }
+
+
+    //get all projects
+    public List<Project> getAllProjects() {
+        return projectRepository.findAll();
+    }
+
+    //Saving the project
+    public void saveProject(Project project) {
+        projectRepository.save(project);
+    }
+
+    //Find project by id
+    public Project findProject(Long id) {
+        Optional<Project> p = projectRepository.findById(id);
+        return p.get();
     }
 
 
