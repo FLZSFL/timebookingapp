@@ -1,10 +1,13 @@
 package com.flzssolutionsgmbh.projecttimebookingapp.data.repository;
 
-import com.flzssolutionsgmbh.projecttimebookingapp.data.domain.IProjectTotalTimeStatistics;
+import com.flzssolutionsgmbh.projecttimebookingapp.data.domain.IProjectDailyTimeStatistics;
 import com.flzssolutionsgmbh.projecttimebookingapp.data.domain.Project;
 import com.flzssolutionsgmbh.projecttimebookingapp.data.domain.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,26 +23,33 @@ public interface ProjectRepository extends PagingAndSortingRepository<Project, L
     List<Project> findById(Project project);
 
     /*For Dashboard, counts all projects active
-    * Will be used for the later phase to distinct between active
-    * not active projects
-    * */
+     * Will be used for the later phase to distinct between active
+     * not active projects
+     * */
     Long countAllByActiveIsTrue();
 
 
+    @Query(value = "SELECT * FROM project "
+            + "WHERE user_id = :user_id", nativeQuery = true)
+    Page<Project> findAllUserProjects(Pageable pageable, @Param("user_id") Long userId);
 
-
-    /*Calculating Time difference + Sum it, TIMESTAMPDIFF calculates in units, start - end. In our
-    * case it calculates minutes from starttime and endtime from Projectusertime*/
-    @Query(value = "SELECT SUM(TIMESTAMPDIFF(MINUTE, START_TIME, END_TIME)) FROM PROJECT_USER_TIME", nativeQuery = true)
+    @Query(value = "SELECT SUM(EXTRACT(EPOCH FROM end_time - start_time) / 60) FROM PROJECT_USER_TIME", nativeQuery = true)
     Long getAllByTimeSpentTotal();
 
-
-    @Query(value = "SELECT FORMATDATETIME(t.START_TIME, 'yyyy-MM-dd') AS day, SUM(TIMESTAMPDIFF(MINUTE, START_TIME, END_TIME)) AS totalHours "
+    /*H2 database*/
+    @Query(value = "SELECT FORMATDATETIME(t.START_TIME, 'yyyy-MM-dd') AS day, SUM(EXTRACT(EPOCH FROM end_time - start_time) / 60) AS totalMinutes "
             + "FROM PROJECT_USER_TIME t "
             + "GROUP BY FORMATDATETIME(t.START_TIME, 'yyyy-MM-dd')", nativeQuery = true)
-    List<IProjectTotalTimeStatistics> getProjectTimeStatistics();
+    List<IProjectDailyTimeStatistics> getProjectTimeStatistics();
+    /*End of H2 database*/
 
-
-
+    /*Postgres database*/
+//    @Query(value = "SELECT DATE(t.start_time) AS day, SUM(EXTRACT(EPOCH FROM t.end_time - t.start_time) / 60) AS totalMinutes "
+//    		+ "FROM project_user_time t "
+//    		+ "GROUP BY DATE(t.start_time) "
+//    		+ "ORDER BY day", nativeQuery = true)
+//    List<IProjectDailyTimeStatistics> getProjectTimeStatistics();
+    /*End of Postgres database*/
 
 }
+
