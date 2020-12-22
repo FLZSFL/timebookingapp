@@ -1,9 +1,9 @@
 package com.flzssolutionsgmbh.projecttimebookingapp.data.domain;
 
-public interface IProjectTimeStatistics {
+public interface IProjectDailyTimeStatistics {
 
     public String getDay();
 
-    public Long getTotalHours();
+    public Long getTotalMinutes();
 
 }

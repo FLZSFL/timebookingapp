@@ -1,6 +1,6 @@
 package com.flzssolutionsgmbh.projecttimebookingapp.service;
 
-import com.flzssolutionsgmbh.projecttimebookingapp.data.domain.IProjectTimeStatistics;
+import com.flzssolutionsgmbh.projecttimebookingapp.data.domain.IProjectTotalTimeStatistics;
 import com.flzssolutionsgmbh.projecttimebookingapp.data.domain.Project;
 import com.flzssolutionsgmbh.projecttimebookingapp.data.domain.User;
 import com.flzssolutionsgmbh.projecttimebookingapp.data.repository.ProjectRepository;
@@ -55,7 +55,7 @@ public class ProjectService {
     }
 
 
-    public List<IProjectTimeStatistics>getProjectTimeStatistics(){
+    public List<IProjectTotalTimeStatistics>getProjectTimeStatistics(){
         return projectRepository.getProjectTimeStatistics();
     }
 

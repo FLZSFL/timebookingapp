@@ -1,6 +1,6 @@
 package com.flzssolutionsgmbh.projecttimebookingapp.data.repository;
 
-import com.flzssolutionsgmbh.projecttimebookingapp.data.domain.IProjectTimeStatistics;
+import com.flzssolutionsgmbh.projecttimebookingapp.data.domain.IProjectTotalTimeStatistics;
 import com.flzssolutionsgmbh.projecttimebookingapp.data.domain.Project;
 import com.flzssolutionsgmbh.projecttimebookingapp.data.domain.User;
 import org.springframework.data.jpa.repository.Query;
@@ -37,7 +37,7 @@ public interface ProjectRepository extends PagingAndSortingRepository<Project, L
     @Query(value = "SELECT FORMATDATETIME(t.START_TIME, 'yyyy-MM-dd') AS day, SUM(TIMESTAMPDIFF(MINUTE, START_TIME, END_TIME)) AS totalHours "
             + "FROM PROJECT_USER_TIME t "
             + "GROUP BY FORMATDATETIME(t.START_TIME, 'yyyy-MM-dd')", nativeQuery = true)
-    List<IProjectTimeStatistics> getProjectTimeStatistics();
+    List<IProjectTotalTimeStatistics> getProjectTimeStatistics();
 
 
 

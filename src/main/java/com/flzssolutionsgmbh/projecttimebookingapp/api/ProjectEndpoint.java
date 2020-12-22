@@ -1,7 +1,7 @@
 package com.flzssolutionsgmbh.projecttimebookingapp.api;
 
 
-import com.flzssolutionsgmbh.projecttimebookingapp.data.domain.IProjectTimeStatistics;
+import com.flzssolutionsgmbh.projecttimebookingapp.data.domain.IProjectTotalTimeStatistics;
 import com.flzssolutionsgmbh.projecttimebookingapp.data.domain.Project;
 import com.flzssolutionsgmbh.projecttimebookingapp.data.domain.ProjectUserTime;
 import com.flzssolutionsgmbh.projecttimebookingapp.service.ProjectService;
@@ -41,7 +41,7 @@ public class ProjectEndpoint {
 
 
     @GetMapping(path = "/project-time-statistics", produces = "application/json")
-    public List<IProjectTimeStatistics> getProjectTimeStatistics() {
+    public List<IProjectTotalTimeStatistics> getProjectTimeStatistics() {
         return projectService.getProjectTimeStatistics();
     }
 
