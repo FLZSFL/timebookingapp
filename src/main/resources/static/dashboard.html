@@ -65,7 +65,8 @@
                                         <div class="row align-items-center no-gutters">
                                             <div class="col mr-2">
                                                 <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span style="border-color: rgb(78,115,223);color: rgb(78,115,223);">Total Time</span></div>
-                                                <div class="text-dark font-weight-bold h5 mb-0"><span>00:00:00</span></div>
+
+                                                <div class="text-dark font-weight-bold h5 mb-0"><span id="total-time"></span></div>
                                             </div>
                                             <div class="col-auto"><i class="icon ion-clock fa-2x text-gray-300"></i></div>
                                         </div>
@@ -80,7 +81,7 @@
                                 <div class="row align-items-center no-gutters">
                                     <div class="col mr-2">
                                         <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span>Total Projects</span></div>
-                                        <div class="text-dark font-weight-bold h5 mb-0"><span>55</span></div>
+                                        <div class="text-dark font-weight-bold h5 mb-0"><span id="total-projects"></span></div>
                                     </div>
                                     <div class="col-auto"><i class="fas fa-calculator fa-2x text-gray-300"></i></div>
                                 </div>
@@ -100,7 +101,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div class="chart-area"><canvas data-bs-chart="{&quot;type&quot;:&quot;line&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Mon&quot;,&quot;Tue&quot;,&quot;Wed&quot;,&quot;Thu&quot;,&quot;Fri&quot;,&quot;Sat&quot;,&quot;Sun&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;Total Time&quot;,&quot;fill&quot;:true,&quot;data&quot;:[&quot;0&quot;,&quot;0.10h&quot;,&quot;0.20h&quot;,&quot;0,30h&quot;,&quot;0.40h&quot;,&quot;0.50h&quot;,&quot;0.60h&quot;,&quot;0.70h&quot;,&quot;0.90h&quot;,&quot;1h&quot;],&quot;backgroundColor&quot;:&quot;rgba(78, 115, 223, 0.05)&quot;,&quot;borderColor&quot;:&quot;rgba(78, 115, 223, 1)&quot;,&quot;borderWidth&quot;:&quot;&quot;}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:true,&quot;reverse&quot;:false},&quot;title&quot;:{&quot;display&quot;:false},&quot;scales&quot;:{&quot;xAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;],&quot;drawOnChartArea&quot;:false},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;padding&quot;:20}}],&quot;yAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;]},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;padding&quot;:20}}]}}}"></canvas></div>
+                                <div class="chart-area" style="height: 900px;"><canvas id="project-time-statistics-chart"></canvas></div>
                             </div>
                         </div>
                     </div>
@@ -116,24 +117,73 @@
             </div>
         </footer>
     </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/chart.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
-    <script src="assets/js/Bootstrap-DateTime-Picker-1.js"></script>
-    <script src="assets/js/Bootstrap-DateTime-Picker-2.js"></script>
-    <script src="assets/js/Bootstrap-DateTime-Picker.js"></script>
-    <script src="assets/js/Date-Range-Picker.js"></script>
-    <script src="assets/js/ebs-bootstrap-datepicker-1.js"></script>
-    <script src="assets/js/ebs-bootstrap-datepicker.js"></script>
-    <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.es.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
-    <script src="assets/js/My-Date-Picker.js"></script>
-    <script src="assets/js/theme.js"></script>
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="assets/js/chart.min.js"></script>
+        <script src="assets/js/bs-init.js"></script>
+        <script src="assets/js/Bootstrap-DateTime-Picker-1.js"></script>
+        <script src="assets/js/Bootstrap-DateTime-Picker-2.js"></script>
+        <script src="assets/js/Bootstrap-DateTime-Picker.js"></script>
+        <script src="assets/js/Date-Range-Picker.js"></script>
+        <script src="assets/js/ebs-bootstrap-datepicker-1.js"></script>
+        <script src="assets/js/ebs-bootstrap-datepicker.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.es.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+        <script src="assets/js/My-Date-Picker.js"></script>
+        <script src="assets/js/theme.js"></script>
+        <script src="assets/js/app.js"></script>
+
+        <script>
+
+            $(document).ready(function() {
+                getProjectTotals(
+                    function(data) {
+                        console.log(data);
+
+                        $("#total-time").html(data.totalTime + " minutes");
+                        $("#total-projects").html(data.totalProjects);
+                    },
+                    function(error) {
+                        console.log(error);
+                    });
+
+                getProjectTimeStatistics(
+                    function(data) {
+                        console.log(data);
+
+                        var labels = [];
+                        var values = [];
+                        for(var i=0; i<data.length; i++) {
+                            labels.push(data[i].day);
+                            values.push(data[i].totalHours);
+                        }
+
+                        var data = {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Total hours',
+                                data: values,
+                            }]
+                        };
+
+                        var ctx = document.getElementById('project-time-statistics-chart');
+                        var myChart = new Chart(ctx, {
+                            type: 'line',
+                            data: data,
+                            options: {}
+                        });
+                    },
+                    function(error) {
+                        console.log(error);
+                    }
+                );
+            });
+
+        </script>
 
 
 </body>

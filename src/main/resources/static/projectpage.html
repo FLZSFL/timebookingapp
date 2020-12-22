@@ -60,7 +60,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 text-nowrap">
-                                <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label>Show&nbsp;<select class="form-control form-control-sm custom-select custom-select-sm"><option value="10" selected="">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>&nbsp;</label></div>
+                                <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label>Show&nbsp;<select id="pageSize" class="form-control form-control-sm custom-select custom-select-sm"><option value="5" selected="">5</option><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>&nbsp;</label></div>
                             </div>
                             <div class="col-md-6">
                                 <div class="text-md-right dataTables_filter" id="dataTable_filter"><label></label></div>
@@ -95,11 +95,11 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6 align-self-center">
-                                <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
+                                <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite"></p>
                             </div>
                             <div class="col-md-6">
                                 <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                                    <ul class="pagination">
+                                    <ul id="pagination" class="pagination">
                                         <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
                                         <li class="page-item active"><a class="page-link" href="#">1</a></li>
                                         <li class="page-item"><a class="page-link" href="#">2</a></li>
@@ -121,7 +121,7 @@
     </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
 
 
-<!--Modal for booking time-->
+<!--Modal -->
 <div id="bookModal" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -133,8 +133,14 @@
             </div>
             <div class="modal-body">
                 <input type="hidden" id="projectId" value="" />
-                <!--In the modal we are able to give in the p with the hours-->
-                <p>Please enter hours spent: <input type="text" id="hours" value="" /></p>
+                <div class="row">
+                    <div class="col-md-6">Start time</div>
+                    <div class="col-md-6"><input type="text" id="projectStartTime" value="" placeholder="yyyy-MM-dd HH:mm:ss" /></div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-6">End time</div>
+                    <div class="col-md-6"><input type="text" id="projectEndTime" value="" placeholder="yyyy-MM-dd HH:mm:ss" /></div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="bookModalSave">Save changes</button>
@@ -143,6 +149,7 @@
         </div>
     </div>
 </div>
+<!--Modal -->
 
 
 <script src="assets/js/jquery.min.js"></script>
@@ -155,28 +162,19 @@
 
 <script>
 
-    function openBookModal(projectId) {
-        $('#bookModal').on('shown.bs.modal', function (event) {
-            var button = $(event.relatedTarget);
-            var projectId = button.data('project-id');
-            console.log('Opened modal for project ID ' + projectId);
-
-            $("#projectId").val(projectId);
-            $('#hours').trigger('focus');
-        });
-    }
 
     function onBookModalSave(event) {
         var projectId = $("#projectId").val();
-        var hours = $("#hours").val();
 
-        console.log('Saving ' + hours + ' hours for project ID ' + projectId);
+        var startTime = $("#projectStartTime").val();
+        var endTime = $("#projectEndTime").val();
 
+        console.log('Saving ' + startTime + ' - ' + endTime + ' for project ID ' + projectId);
 
-        <!--Communicates with the js-function -->
         bookProject(
             projectId,
-            hours,
+            startTime,
+            endTime,
             function(data) {
                 console.log(data);
                 alert('Project hours are successfully saved!');
@@ -185,25 +183,38 @@
                 console.log(error);
             }
         );
+
     }
 
-    $(document).ready(function() {
+    function updatePagingInfo(page) {
+        $("#dataTable_info").html("Showing " + page.size + " of " + page.totalElements);
 
-        $("#bookModalSave").on('click', onBookModalSave);
+        var paginationHtml = '';
+        paginationHtml += '<li class="page-item ' + (!page.first ? '' : 'disabled') + '"><a class="page-link" href="javascript:loadPage(0)" aria-label="Previous"><span aria-hidden="true">«</span></a></li>';
+        for(var i = 0; i < page.totalPages; i++) {
+            paginationHtml += '<li class="page-item ' + (i == page.number ? 'active' : '') + '"><a class="page-link" href="javascript:loadPage(' + i + ')">' + (i + 1) + '</a></li>';
+        }
+        paginationHtml += '<li class="page-item ' + (!page.last ? '' : 'disabled') + '"><a class="page-link" href="javascript:loadPage(' + (page.totalPages - 1) + ')" aria-label="Next"><span aria-hidden="true">»</span></a></li>';
+
+        $("#pagination").html(paginationHtml);
+    }
+
+    function loadPage(page) {
+
+        var pageSize = $("#pageSize").val();
 
         getProjects(
+            page,
+            pageSize,
             function(data) {
                 console.log(data);
 
+                updatePagingInfo(data);
+
                 var html = '';
-                var projects = data;
-
-                <!--Question for Deivid -->
-                var projectsObjects = JSON.parse(data);
-
+                var projects = data.content;
                 for(i=0; i<projects.length; i++) {
                     var project = projects[i];
-
 
                     html += '<tr>' +
                         '<td>' + project.id + '</td>' +
@@ -220,20 +231,46 @@
                         '</tr>';
                 }
 
-                $("#projectTableBody").html(html);
+                $("#projectsTableBody").html(html);
 
-                $(".book-button").click(function(event) {
-                    var projectId = $(this).data('project-id');
-                    console.log('Clicked on project ' + projectId);
-                    openBookModal(projectId);
-                });
 
             },
             function(error) {
                 console.log(error);
             }
         );
+
+    }
+
+    $(document).ready(function() {
+
+        $("#bookModalSave").on('click', onBookModalSave);
+
+        $("#pageSize").on('change', function() {
+            loadPage(0);
+        });
+
+        $('#bookModal').modal({
+            backdrop: 'static',
+            keyboard: false,
+            show: false,
+        });
+
+        $('#bookModal').on('shown.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var projectId = button.data('project-id');
+            console.log('Opened modal for project ID ' + projectId);
+
+            $("#projectId").val(projectId);
+            $('#projectStartTime').trigger('focus');
+        });
+
+        loadPage(0);
     });
+
+
 </script>
+
 </body>
+
 </html>

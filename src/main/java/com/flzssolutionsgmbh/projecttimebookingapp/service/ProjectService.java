@@ -1,9 +1,12 @@
 package com.flzssolutionsgmbh.projecttimebookingapp.service;
 
+import com.flzssolutionsgmbh.projecttimebookingapp.data.domain.IProjectTimeStatistics;
 import com.flzssolutionsgmbh.projecttimebookingapp.data.domain.Project;
 import com.flzssolutionsgmbh.projecttimebookingapp.data.domain.User;
 import com.flzssolutionsgmbh.projecttimebookingapp.data.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -13,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-/**/
+
 @Service
 public class ProjectService {
 
@@ -22,12 +25,18 @@ public class ProjectService {
     private ProjectRepository projectRepository;
 
 
-    private String variable;
-
-
     public void addProject(Project project){
 
         //add additional if statement to ensure that the project is not existing yet
+        projectRepository.save(project);
+    }
+
+    public Project findProject(Long id) {
+        Optional<Project> p = projectRepository.findById(id);
+        return p.get();
+    }
+
+    public void saveProject(Project project) {
         projectRepository.save(project);
     }
 
@@ -35,49 +44,44 @@ public class ProjectService {
         projectRepository.delete(project);
     }
 
-    public void updateProject(Project project, Long id){
-        if(project.getName()==null){
-
-        }
-        projectRepository.findById(id);
-    }
-
-    public void updateProject(Project project, String name){
-        projectRepository.findByName(project.getName());
-    }
-
-
     //For dashboard
     public Long getAllProjectsNumber(){
         return projectRepository.countAllByActiveIsTrue();
     }
 
 
-    //get all projects
-    public List<Project> getAllProjects() {
-        return projectRepository.findAll();
-    }
-
-    //Saving the project
-    public void saveProject(Project project) {
-        projectRepository.save(project);
-    }
-
-    //Find project by id
-    public Project findProject(Long id) {
-        Optional<Project> p = projectRepository.findById(id);
-        return p.get();
+    public Long getAllProjectsTimeSpent() {
+        return projectRepository.getAllByTimeSpentTotal();
     }
 
 
+    public List<IProjectTimeStatistics>getProjectTimeStatistics(){
+        return projectRepository.getProjectTimeStatistics();
+    }
+
+    /*Pageable object will consist of PageRequest PageNo, PageSize, Sorting
+    * By default, records are ordered in DESCENDING order. To choose ASCENDING order, use .ascending() method.
+    *
+    * A Page object has the number of total pages, number of the current page and well as whether current page
+    * is first page or last page.
+    * */
+    public Page<Project> getAllProjects(Pageable pageable) {
+        return projectRepository.findAll(pageable);
+    }
+
+
+    public Long getTotalProjects() {
+        return projectRepository.count();
+    }
 
     //Find all projects defined by User
     public List<Project> findUserProject(User user){
         return projectRepository.findByUser(user);
     }
 
+
     public void calculateTimeDifference(String startDate, String endDate){
-    // SimpleDateFormat converts the
+        // SimpleDateFormat converts the
         // string format to date object
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
@@ -150,6 +154,4 @@ public class ProjectService {
 
 
 }
-
-
 

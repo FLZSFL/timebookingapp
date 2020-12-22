@@ -1,7 +1,12 @@
 package com.flzssolutionsgmbh.projecttimebookingapp.data.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 @Entity
 public class Project {
@@ -10,38 +15,27 @@ public class Project {
     @Id
     @GeneratedValue
     private Long id;
+
     private String name;
     private boolean active;
-
-
-    //Formatting the Date
+    //Temporal data can have Date, Time or TimeStamp
     @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern="yyyy/MM/dd")
     private Date startTime;
-
+    //Temporal data can have Date, Time or TimeStamp
     @Temporal( TemporalType.DATE)
+    @JsonFormat(pattern="yyyy/MM/dd")
     private Date endTime;
-
-    /*
-    //time spent for the project on particular day
-    @Temporal(TemporalType.DATE)
-    private Date timeSpent;
-
-    //total spent time for project
-    @Temporal(TemporalType.DATE)
-    private Date timeSpentTotal;
-     */
-
-    private Long timeSpent;
-
-
-
-
-
-    //description of what have been done on "time spent"
-    private String activityDescription;
+    private Long totalSpentMinutes;
 
     @ManyToOne
     private User user;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "project")
+    /*JsonIgnore not used for serialization or deserialization
+    (it doesn't go out of API). The value will be shown as null on the front-end*/
+    @JsonIgnore
+    private List<ProjectUserTime> projectUserTimes = new LinkedList<ProjectUserTime>();
 
 
     public Project() {
@@ -64,14 +58,6 @@ public class Project {
         this.startTime = date;
     }
 
-    public String getActivityDescription() {
-        return activityDescription;
-    }
-
-    public void setActivityDescription(String activityDescription) {
-        this.activityDescription = activityDescription;
-    }
-
     public User getUser() {
         return user;
     }
@@ -88,6 +74,14 @@ public class Project {
         this.name = name;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     public Date getEndTime() {
         return endTime;
     }
@@ -95,22 +89,22 @@ public class Project {
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
-    /*
-    public Date getTimeSpent() {
-        return timeSpent;
+
+    public Long getTotalSpentMinutes() {
+        return totalSpentMinutes;
     }
 
-    public void setTimeSpent(Date timeSpent) {
-        this.timeSpent = timeSpent;
-    }
-    */
-
-    public Long getTimeSpent() {
-        return timeSpent;
+    public void setTotalSpentMinutes(Long totalSpentMinutes) {
+        this.totalSpentMinutes = totalSpentMinutes;
     }
 
-    public void setTimeSpent(Long timeSpent) {
-        this.timeSpent = timeSpent;
+
+    public void addProjectUserTime(ProjectUserTime time) {
+        projectUserTimes.add(time);
+    }
+
+    public List<ProjectUserTime> getProjectUserTimes() {
+        return projectUserTimes;
     }
 
 }

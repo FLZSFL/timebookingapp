@@ -1,52 +1,64 @@
 package com.flzssolutionsgmbh.projecttimebookingapp.data.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
-@Entity
-public class User {
+@Entity(name = "users")
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     @Email
     @NotEmpty
     private String email;
-    private String fn;
-    private String ln;
-    private String adress;
+
+    private String firstName;
+    private String lastName;
+    private String address;
     private String city;
     private String country;
 
     @org.springframework.data.annotation.Transient //will not be serialized
+    @JsonIgnore /*we don't want password to be sent in a JSON response via API */
     private String password;
+
+    //@JsonInclude
+    @Transient
+    private String registrationPassword;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Project> projectList;
 
-
-    @ManyToMany
-    private List<Role> roles;
-
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Role> roles = new ArrayList<Role>();
 
     public User() {
 
     }
 
-
-    public User(String email, String fn, String ln, String password) {
+    public User(String email, String firstName, String lastName, String password) {
         this.email = email;
-        this.fn = fn;
-        this.ln = ln;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.password = password;
     }
 
-
+    public Long getId() {
+        return id;
+    }
 
     public String getEmail() {
         return email;
@@ -56,31 +68,60 @@ public class User {
         this.email = email;
     }
 
-    public String getFn() {
-        return fn;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFn(String fn) {
-        this.fn = fn;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLn() {
-        return ln;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLn(String ln) {
-        this.ln = ln;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
     public String getPassword() {
-        String transientPassword = this.password;
-        this.password = null;
-        return transientPassword;
+        return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRegistrationPassword() {
+        return registrationPassword;
+    }
+
+    public void setRegistrationPassword(String registrationPassword) {
+        this.registrationPassword = registrationPassword;
     }
 
     public List<Role> getRoles() {
@@ -90,5 +131,56 @@ public class User {
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
-}
 
+    public void addRole(Role role) {
+        roles.add(role);
+    }
+
+    public boolean isAdmin() {
+        return hasRole(Role.RoleName.ADMIN);
+    }
+
+    public boolean isUser() {
+        return hasRole(Role.RoleName.USER);
+    }
+
+    public boolean hasRole(Role.RoleName roleName) {
+        for(Role role : roles) {
+            if(roleName.toString().equals(role.getName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+}
