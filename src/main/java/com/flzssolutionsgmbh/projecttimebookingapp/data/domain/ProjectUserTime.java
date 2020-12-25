@@ -14,12 +14,12 @@ public class ProjectUserTime {
     private Long id;
 
     /*"Optional = False" is directly related with lazy loading*/
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "project_id", nullable = false)
-
+    /* JoinColumn is states, that project_id is a foreign key for ProjectUserTime*/
     /*@OnDelete in hibernate is used when there are joined sub class.
      * @OnDelete decides whether deleting an entry from database will delete
      * the rows represented by joined sub class or not*/
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "project_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Project project;
 

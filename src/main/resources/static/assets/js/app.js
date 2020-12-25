@@ -17,6 +17,25 @@ function getProjects(currentPage, pageSize, onSuccess, onError) {
     });
 }
 
+function createProject(project, onSuccess, onError) {
+    console.log('Creating project', project);
+
+    $.ajax({
+        type: "POST",
+        url: serviceEndpointURL + "/api/create-project",
+        data: JSON.stringify(project),
+        contentType: "application/json; charset=utf-8",
+    	dataType: "json",
+        success: function (data, textStatus, response) {
+            onSuccess(data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR, textStatus, errorThrown);
+            onError(errorThrown);
+        }
+    });
+}
+
 
 function bookProject(projectId, startTime, endTime, onSuccess, onError) {
     $.ajax({
@@ -63,3 +82,128 @@ function getProjectTimeStatistics(onSuccess, onError) {
         }
     });
 }
+
+function registerUser(user, onSuccess, onError) {
+
+	console.log('Registering user', user);
+
+    $.ajax({
+        type: "POST",
+        url: serviceEndpointURL + "/api/register-user",
+        data: JSON.stringify(user),
+        contentType: "application/json; charset=utf-8",
+    	dataType: "json",
+        success: function (data, textStatus, response) {
+            onSuccess(data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR, textStatus, errorThrown);
+            onError(errorThrown);
+        }
+    });
+}
+
+function loadUser(onSuccess, onError) {
+	$.ajax({
+        type: "GET",
+        url: serviceEndpointURL + "/api/user",
+        success: function (data, textStatus, response) {
+            onSuccess(data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR, textStatus, errorThrown);
+            onError(errorThrown);
+        }
+    });
+}
+
+function updateUser(user, onSuccess, onError) {
+	$.ajax({
+        type: "PUT",
+        url: serviceEndpointURL + "/api/user",
+        data: JSON.stringify(user),
+        contentType: "application/json; charset=utf-8",
+    	dataType: "json",
+        success: function (data, textStatus, response) {
+            onSuccess(data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR, textStatus, errorThrown);
+            onError(errorThrown);
+        }
+    });
+}
+
+function updateUserInfo(user, onSuccess, onError) {
+	$.ajax({
+        type: "PUT",
+        url: serviceEndpointURL + "/api/user-info",
+        data: JSON.stringify(user),
+        contentType: "application/json; charset=utf-8",
+    	dataType: "json",
+        success: function (data, textStatus, response) {
+            onSuccess(data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR, textStatus, errorThrown);
+            onError(errorThrown);
+        }
+    });
+}
+
+function changePassword(password, onSuccess, onError) {
+	$.ajax({
+        type: "POST",
+        url: serviceEndpointURL + "/api/change-password",
+        data: "password=" + password,
+        success: function (data, textStatus, response) {
+            onSuccess(data);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR, textStatus, errorThrown);
+            onError(errorThrown);
+        }
+    });
+}
+
+function showSuccess(message) {		
+	showMessage('<div class="alert alert-success text-center" role="alert">' +
+				message +
+			'</div>', true);
+}
+
+function showError(message) {
+	if(!message || message == '') {
+		message = 'The system error has happened!';
+	}
+
+	showMessage('<div class="alert alert-danger alert-dismissible text-center" role="alert">' +
+				message +
+				'<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+    				'<span aria-hidden="true">&times;</span>' +
+  				'</button>' +				
+			'</div>');
+}
+
+function showMessage(html, autoHide) {
+	var container = $(".alerts-container");
+	container.html(html);
+	container.slideDown(400);
+	
+	if(autoHide) {
+		window.setTimeout(function() {
+			container.slideUp(400);
+			container.html('');
+		}, 2500);
+	}	
+}
+
+function formatTimeInHours(minutes) {
+	var hours = Math.floor(minutes / 60);
+	minutes = minutes - hours * 60;
+	
+	return hours + "h:" + minutes + "m";
+}
+
+
+

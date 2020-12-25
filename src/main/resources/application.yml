@@ -5,10 +5,32 @@ spring:
     console:
       enabled: true
       path: /console
+  ##  datasource:
+  ##    #initialization-mode: always
+  ##    platform: postgres
+  ##    url: jdbc:postgresql://localhost:5432/projecttimebookingapp
+  ##    username: projecttimebookingapp
+  ##    password: test123
   datasource:
     url: jdbc:h2:file:./data/database
     username: sa
     password: sa
+
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    hibernate:
+      ## create ## can be changed to "update" if we don't want the data to be wiped on every restart
+      ddl-auto: create
+  session:
+    store-type: jdbc
+    timeout:
+      seconds: 900
+    jdbc:
+      initialize-schema: always
 
 
 

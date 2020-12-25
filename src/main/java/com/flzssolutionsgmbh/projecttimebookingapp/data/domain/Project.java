@@ -31,9 +31,13 @@ public class Project {
     @ManyToOne
     private User user;
 
+
+    /* JsonIgnore not used for serialization or deserialization
+    (it doesn't go out of API). The value will be shown as null on the front-end */
+    /* mappedBy = do not create another join column as the relationship already being mappedBy */
+    /* LinkedList more convenient since there will be always added new entries addLast / getLast are methods which are more
+    *  efficient than ArrayList */
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "project")
-    /*JsonIgnore not used for serialization or deserialization
-    (it doesn't go out of API). The value will be shown as null on the front-end*/
     @JsonIgnore
     private List<ProjectUserTime> projectUserTimes = new LinkedList<ProjectUserTime>();
 

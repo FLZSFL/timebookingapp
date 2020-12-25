@@ -11,7 +11,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-
+/* UserDetails encapsulates the user information into the auth-objects */
+/* Giving the DB table a name */
 @Entity(name = "users")
 public class User implements UserDetails {
 
@@ -19,6 +20,8 @@ public class User implements UserDetails {
     @GeneratedValue
     private Long id;
 
+
+    /*Unique = cannot be stored twice as the same*/
     @Column(nullable = false, unique = true)
     @Email
     @NotEmpty
@@ -30,17 +33,23 @@ public class User implements UserDetails {
     private String city;
     private String country;
 
-    @org.springframework.data.annotation.Transient //will not be serialized
-    @JsonIgnore /*we don't want password to be sent in a JSON response via API */
+    //will not be serialized
+    @org.springframework.data.annotation.Transient
+    @JsonIgnore /* we don't want password to be sent in a JSON response via API */
     private String password;
 
     //@JsonInclude
     @Transient
     private String registrationPassword;
 
+
+    /* Referencing to the owning side, Project has the JoinColumn*/
+    /* mappedBy = do not create another join column as the relationship already being mappedBy*/
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Project> projectList;
 
+    /* Referencing to the owning side, Roles has the JoinColumn*/
+    /* mappedBy = do not create another join column as the relationship already being mappedBy*/
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Role> roles = new ArrayList<Role>();

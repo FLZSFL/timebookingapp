@@ -10,37 +10,44 @@
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="assets/css/jquery.datetimepicker.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body id="page-top">
+
+	<div class="alerts-container"></div>
 
 <!--Wrapper for the whole page-->
 <div id="wrapper">
     <!--Navigator on the left (Menus and so on)-->
     <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background: rgb(187,190,200);">
         <div class="container-fluid d-flex flex-column p-0">
-            <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+            <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="/">
                 <div class="sidebar-brand-icon rotate-n-15"><i class="icon-book-open"></i></div>
                 <div class="sidebar-brand-text mx-3"><span>ProjectBook</span></div>
             </a>
             <hr class="sidebar-divider my-0">
             <ul class="nav navbar-nav text-light" id="accordionSidebar">
                 <li class="nav-item">
-                    <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="height: 52px;"><img class="border rounded-circle img-profile" src="assets/img/avatars/avatar5.jpeg"><span class="d-none d-lg-inline mr-2 text-gray-600 small" style="color: rgb(255,255,255);font-size: 13.6px;border-style: none;text-align: left;margin: 0px;width: 224px;height: 52px;padding: 16px;"><strong>User&nbsp;</strong></span></a>
-                        <div
-                                class="dropdown-menu shadow dropdown-menu-right animated--grow-in"><a class="dropdown-item" href="#"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a><a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings</a><a class="dropdown-item"
-                                                                                                                                                                                                                                                                                                                                 href="#"><i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Activity log</a>
-                            <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a><span class="dropdown-item-text">Text Item</span><span class="dropdown-item-text">Text Item</span>
-                            <span
-                                    class="dropdown-item-text">Text Item</span>
+                    <div class="nav-item dropdown no-arrow">
+                    	<a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="height: 52px;">
+                    		<img class="border rounded-circle img-profile" src="assets/img/avatars/avatar5.jpeg"><span class="d-none d-lg-inline mr-2 text-gray-600 small" style="color: rgb(255,255,255);font-size: 13.6px;border-style: none;text-align: left;margin: 0px;width: 224px;height: 52px;padding: 16px;"><strong>User&nbsp;</strong></span>
+                    	</a>
+                       	<div class="dropdown-menu shadow dropdown-menu-right animated--grow-in">
+                       		<a class="dropdown-item" href="/user-profile"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a>
+                       		<a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings</a>
+                       		<a class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Activity log</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a>                            
                         </div>
                     </div>
                 </li>
                 <li class="nav-item"></li>
-                <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-tachometer-alt"></i><span>DASHBOARD</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fas fa-user"></i><span>Profile</span></a></li>
-                <li class="nav-item"><a class="nav-link active" href="projectpage.html"><i class="icon ion-ios-paper-outline"></i>PROJECTS<span></span></a></li>
-                <li class="nav-item"><a class="nav-link" href="logout.html"><i class="far fa-user-circle"></i><span>LOGOUT</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-tachometer-alt"></i><span>DASHBOARD</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="/user-profile"><i class="fas fa-user"></i><span>Profile</span></a></li>
+                <li class="nav-item"><a class="nav-link active" href="/projects"><i class="icon ion-ios-paper-outline"></i>PROJECTS<span></span></a></li>
+                <li class="nav-item"><a class="nav-link" href="/logout"><i class="far fa-user-circle"></i><span>LOGOUT</span></a></li>
                 <li class="nav-item"></li>
                 <li class="nav-item"></li>
             </ul>
@@ -48,7 +55,8 @@
         </div>
     </nav>
     <!--The content container-->
-    <div class="d-flex flex-column" id="content-wrapper">
+    <div class="d-flex flex-column" id="content-wrapper">        	
+    
         <div id="content">
             <!--Container with for showing projects incl. ID, Name, End Date, Time Spent Row-->
             <div class="container-fluid">
@@ -60,10 +68,10 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 text-nowrap">
-                                <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label>Show&nbsp;<select id="pageSize" class="form-control form-control-sm custom-select custom-select-sm"><option value="5" selected="">5</option><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>&nbsp;</label></div>
+                                <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"><label>Show&nbsp;<select id="pageSize" class="form-control form-control-sm custom-select custom-select-sm"><option value="1" selected="">1</option><option value="5" selected="">5</option><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select>&nbsp;</label></div>
                             </div>
                             <div class="col-md-6">
-                                <div class="text-md-right dataTables_filter" id="dataTable_filter"><label></label></div>
+                                <a href="javascript:" class="btn btn-success btn-rounded float-right" data-toggle="modal" data-target="#createProjectModal">Create Project</a>
                             </div>
                         </div>
                         <div class="table-responsive table mt-2" role="grid" aria-describedby="dataTable_info">
@@ -74,11 +82,11 @@
                                     <th>Name</th>
                                     <th>Start date</th>
                                     <th>End date</th>
-                                    <th>Time spent</th>
+                                    <th class="text-right">Time spent</th>
                                     <th></th>
                                 </tr>
                                 </thead>
-                                <tbody id="projectTableBody">
+                                <tbody id="projectsTableBody">
 
                                 </tbody>
                                 <tfoot>
@@ -87,7 +95,7 @@
                                     <td><strong>Name</strong></td>
                                     <td><strong>Start date</strong></td>
                                     <td><strong>End date</strong></td>
-                                    <td>Time spent</td>
+                                    <td class="text-right"><strong>Time spent</strong></td>
                                     <td></td>
                                 </tr>
                                 </tfoot>
@@ -100,11 +108,13 @@
                             <div class="col-md-6">
                                 <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
                                     <ul id="pagination" class="pagination">
+                                        <!-- 
                                         <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
                                         <li class="page-item active"><a class="page-link" href="#">1</a></li>
                                         <li class="page-item"><a class="page-link" href="#">2</a></li>
                                         <li class="page-item"><a class="page-link" href="#">3</a></li>
                                         <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                                        -->
                                     </ul>
                                 </nav>
                             </div>
@@ -121,155 +131,243 @@
     </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
 
 
-<!--Modal -->
-<div id="bookModal" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Book Project</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <input type="hidden" id="projectId" value="" />
-                <div class="row">
-                    <div class="col-md-6">Start time</div>
-                    <div class="col-md-6"><input type="text" id="projectStartTime" value="" placeholder="yyyy-MM-dd HH:mm:ss" /></div>
-                </div>
-                <div class="row" style="margin-top: 10px;">
-                    <div class="col-md-6">End time</div>
-                    <div class="col-md-6"><input type="text" id="projectEndTime" value="" placeholder="yyyy-MM-dd HH:mm:ss" /></div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="bookModalSave">Save changes</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!--Modal -->
+	<!--Modal -->
+	<div class="modal fade" id="createProjectModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <h4 class="modal-title w-100 font-weight-bold">Create Project</h4>
+	                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                    <span aria-hidden="true">&times;</span>
+	                </button>
+	            </div>
+	            <form id="createProjectForm">
+	                <div class="modal-body mx-3">
+	                    <div class="md-form mb-4">
+	                        <label>Project Name</label>
+	                        <input type="text" id="newProjectName" name="name" class="form-control validate" required>
+	                    </div>
+	
+	                    <div class="md-form mb-4">
+	
+	                        <label>Start Date</label>
+	                        <input id="newProjectStartDate" type="text" class="form-control validate" name="newProjectStartDate" required autocomplete="off">
+	                    </div>
+	
+	                    <div class="md-form mb-4">
+	                        <label>End Date</label>
+	                        <input id="newProjectEndDate" type="text" class="form-control validate" name="newProjectEndDate" required autocomplete="off">
+	                    </div>
+	                </div>
+	                <div class="modal-footer d-flex justify-content-center">
+	                    <button class="btn btn-info btn-block" type="submit" >Send</button>
+	                </div>
+	            </form>
+	        </div>
+	    </div>
+	</div>
+	
+	<div class="modal fade" id="bookProjectModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	    <div class="modal-dialog" role="document">
+	        <div class="modal-content">
+	            <div class="modal-header">
+	                <h4 class="modal-title w-100 font-weight-bold">Book Project</h4>
+	                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                    <span aria-hidden="true">&times;</span>
+	                </button>
+	            </div>
+	            <form id="bookProjectForm">
+	                <input type="hidden" id="projectId" value="" />
+	                <div class="modal-body mx-3">
+                       	<div class="md-form mb-4">	
+	                        <label>Start Date</label>
+	                        <input id="bookStartTime" type="text" class="form-control validate" name="bookStartTime" required autocomplete="off">
+	                    </div>
+	
+	                    <div class="md-form mb-4">
+	                        <label>End Date</label>
+	                        <input id="bookEndTime" type="text" class="form-control validate" name="bookEndTime" required autocomplete="off">
+	                    </div>
+	                </div>
+	                <div class="modal-footer d-flex justify-content-center">
+	                    <button class="btn btn-info btn-block" type="submit" >Send</button>
+	                </div>
+	            </form>
+	        </div>
+	    </div>
+	</div>
 
 
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/js/chart.min.js"></script>
-<script src="assets/js/bs-init.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
-<script src="assets/js/theme.js"></script>
-<script src="assets/js/app.js"></script>
-
-<script>
-
-
-    function onBookModalSave(event) {
-        var projectId = $("#projectId").val();
-
-        var startTime = $("#projectStartTime").val();
-        var endTime = $("#projectEndTime").val();
-
-        console.log('Saving ' + startTime + ' - ' + endTime + ' for project ID ' + projectId);
-
-        bookProject(
-            projectId,
-            startTime,
-            endTime,
-            function(data) {
-                console.log(data);
-                alert('Project hours are successfully saved!');
-            },
-            function(error) {
-                console.log(error);
-            }
-        );
-
-    }
-
-    function updatePagingInfo(page) {
-        $("#dataTable_info").html("Showing " + page.size + " of " + page.totalElements);
-
-        var paginationHtml = '';
-        paginationHtml += '<li class="page-item ' + (!page.first ? '' : 'disabled') + '"><a class="page-link" href="javascript:loadPage(0)" aria-label="Previous"><span aria-hidden="true">«</span></a></li>';
-        for(var i = 0; i < page.totalPages; i++) {
-            paginationHtml += '<li class="page-item ' + (i == page.number ? 'active' : '') + '"><a class="page-link" href="javascript:loadPage(' + i + ')">' + (i + 1) + '</a></li>';
-        }
-        paginationHtml += '<li class="page-item ' + (!page.last ? '' : 'disabled') + '"><a class="page-link" href="javascript:loadPage(' + (page.totalPages - 1) + ')" aria-label="Next"><span aria-hidden="true">»</span></a></li>';
-
-        $("#pagination").html(paginationHtml);
-    }
-
-    function loadPage(page) {
-
-        var pageSize = $("#pageSize").val();
-
-        getProjects(
-            page,
-            pageSize,
-            function(data) {
-                console.log(data);
-
-                updatePagingInfo(data);
-
-                var html = '';
-                var projects = data.content;
-                for(i=0; i<projects.length; i++) {
-                    var project = projects[i];
-
-                    html += '<tr>' +
-                        '<td>' + project.id + '</td>' +
-                        '<td>' + project.name + '</td>' +
-                        '<td>' + project.startTime + '</td>' +
-                        '<td>' + project.endTime + '</td>' +
-                        '<td>' + project.timeSpent + '</td>' +
-                        '<td>' +
-                        '<div class="btn-group open">' +
-                        '<button class="btn btn-primary book-button" data-toggle="modal" data-target="#bookModal" data-project-id="' + project.id + '" type="button">Book</button>' +
-                        '</div>' +
-                        '</td>' +
-                        '<td></td>' +
-                        '</tr>';
-                }
-
-                $("#projectsTableBody").html(html);
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/js/chart.min.js"></script>
+	<script src="assets/js/bs-init.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+	<script src="assets/js/jquery.datetimepicker.full.min.js"></script>
+	<script src="assets/js/theme.js"></script>
+	<script src="assets/js/app.js"></script>
 
 
-            },
-            function(error) {
-                console.log(error);
-            }
-        );
-
-    }
-
-    $(document).ready(function() {
-
-        $("#bookModalSave").on('click', onBookModalSave);
-
-        $("#pageSize").on('change', function() {
-            loadPage(0);
-        });
-
-        $('#bookModal').modal({
-            backdrop: 'static',
-            keyboard: false,
-            show: false,
-        });
-
-        $('#bookModal').on('shown.bs.modal', function (event) {
-            var button = $(event.relatedTarget);
-            var projectId = button.data('project-id');
-            console.log('Opened modal for project ID ' + projectId);
-
-            $("#projectId").val(projectId);
-            $('#projectStartTime').trigger('focus');
-        });
-
-        loadPage(0);
-    });
-
-
-</script>
+	<script>
+	   
+	    function updatePagingInfo(page) {
+	        $("#dataTable_info").html("Showing " + page.size + " of " + page.totalElements);
+	
+	        var paginationHtml = '';
+	        paginationHtml += '<li class="page-item ' + (!page.first ? '' : 'disabled') + '"><a class="page-link" href="javascript:loadPage(0)" aria-label="Previous"><span aria-hidden="true">«</span></a></li>';
+	        for(var i = 0; i < page.totalPages; i++) {
+	            paginationHtml += '<li class="page-item ' + (i == page.number ? 'active' : '') + '"><a class="page-link" href="javascript:loadPage(' + i + ')">' + (i + 1) + '</a></li>';
+	        }
+	        paginationHtml += '<li class="page-item ' + (!page.last ? '' : 'disabled') + '"><a class="page-link" href="javascript:loadPage(' + (page.totalPages - 1) + ')" aria-label="Next"><span aria-hidden="true">»</span></a></li>';
+	
+	        $("#pagination").html(paginationHtml);
+	    }
+	
+	    function loadPage(page) {
+	
+	        var pageSize = $("#pageSize").val();
+	
+	        getProjects(
+	            page,
+	            pageSize,
+	            function(data) {
+	                console.log(data);
+	
+	                updatePagingInfo(data);
+	
+	                var html = '';
+	                var projects = data.content;
+	                for(i=0; i<projects.length; i++) {
+	                    var project = projects[i];
+	                    
+	                    var totalMinutes = project.totalSpentMinutes ? project.totalSpentMinutes : 0; 
+	                    var time = formatTimeInHours(totalMinutes);
+	
+	                    html += '<tr>' +
+	                        '<td>' + project.id + '</td>' +
+	                        '<td>' + project.name + '</td>' +
+	                        '<td>' + project.startTime + '</td>' +
+	                        '<td>' + project.endTime + '</td>' +
+	                        '<td class="text-right">' + time + '</td>' +
+	                        '<td class="text-right">' +
+	                        '<div class="btn-group open">' +
+	                        '<button class="btn btn-primary book-button" data-toggle="modal" data-target="#bookProjectModal" data-project-id="' + project.id + '" type="button">Book</button>' +
+	                        '</div>' +
+	                        '</td>' +
+	                        '<td></td>' +
+	                        '</tr>';
+	                }
+	
+	                $("#projectsTableBody").html(html);
+	
+	
+	            },
+	            function(error) {
+	                console.log(error);
+	            }
+	        );
+	
+	    }
+	    
+	    function setupBookingModal() {
+	    	$('#bookProjectModal').modal({
+	            backdrop: 'static',
+	            keyboard: true,
+	            show: false,
+	        });
+	        $("#bookStartTime").datetimepicker();
+	        $("#bookEndTime").datetimepicker();
+	                
+	        $("#bookProjectForm").on('submit', function(event) {
+	        	event.preventDefault();        
+	        	
+	        	var projectId = $("#projectId").val();
+	        	var startTime = $("#bookStartTime").val();
+	            var endTime = $("#bookEndTime").val();
+	
+	            console.log('Saving ' + startTime + ' - ' + endTime + ' for project ID ' + projectId);
+	
+	            bookProject(
+	                projectId,
+	                startTime,
+	                endTime,
+	                function(data) {              
+	                	$("#bookProjectModal").modal('hide');
+	                    showSuccess('Project hours were successfully saved!');
+	                    window.setTimeout(function() { document.location.reload() }, 2000);
+	                },
+	                function(error) {
+	               		showError('Project time booking failed: ' + error);
+	                }
+	            );
+	        });
+	        
+	        $('#bookProjectModal').on('shown.bs.modal', function (event) {
+	            var button = $(event.relatedTarget);
+	            var projectId = button.data('project-id');
+	            console.log('Opened modal for project ID ' + projectId);
+	
+	            $("#projectId").val(projectId);
+	            $('#bookStartTime').trigger('focus');
+	        });
+	    }
+	    
+	    function setupCreateProjectModal() {
+	    	$('#createProjectModal').modal({
+	            backdrop: 'static',
+	            keyboard: true,
+	            show: false,
+	        });
+	        
+	        var dateOptions = { 
+	       		timepicker:false,
+	       		format:'Y/m/d',
+	        };
+	        $("#newProjectStartDate").datetimepicker(dateOptions);
+	        $("#newProjectEndDate").datetimepicker(dateOptions);
+	        
+	             
+	        $("#createProjectForm").on('submit', function(event) {
+	        	event.preventDefault();
+	        	
+	        	var project = {
+	        		name: $("#newProjectName").val(),
+	        		startTime: $("#newProjectStartDate").val(),
+	        		endTime: $("#newProjectEndDate").val(),
+	        	};
+	        	
+	        	createProject(
+	       			project,
+	       			function(data) {
+	       				$("#createProjectModal").modal('hide');
+	       				showSuccess('Project was successfully created');
+	       				window.setTimeout(function() { document.location.reload() }, 2000);
+	       			},
+	       			function(error) {
+	       				showError('Project creation failed: ' + error);
+	       			},
+	        	);
+	        });
+	        
+	        $('#createProjectModal').on('shown.bs.modal', function (event) {
+		        $('#newProjectName').trigger('focus');
+	        });
+	    }
+	
+	    $(document).ready(function() {
+	
+	        $("#pageSize").on('change', function() {
+	            loadPage(0);
+	        });
+	        
+	        setupBookingModal();
+	        setupCreateProjectModal();
+	                                    
+	        loadPage(0);
+	    });
+	
+	
+	</script>
 
 </body>
 

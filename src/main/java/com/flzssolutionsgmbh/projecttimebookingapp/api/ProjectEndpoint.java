@@ -1,9 +1,7 @@
 package com.flzssolutionsgmbh.projecttimebookingapp.api;
 
 
-import com.flzssolutionsgmbh.projecttimebookingapp.data.domain.IProjectTotalTimeStatistics;
-import com.flzssolutionsgmbh.projecttimebookingapp.data.domain.Project;
-import com.flzssolutionsgmbh.projecttimebookingapp.data.domain.ProjectUserTime;
+import com.flzssolutionsgmbh.projecttimebookingapp.data.domain.*;
 import com.flzssolutionsgmbh.projecttimebookingapp.service.ProjectService;
 import com.flzssolutionsgmbh.projecttimebookingapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +10,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/api")
@@ -25,12 +27,26 @@ public class ProjectEndpoint {
     @Autowired
     private UserService userService;
 
+    @PostMapping(path = "/create-project", produces = "application/json")
+    public Project createProject(HttpServletRequest request, @RequestBody Project newProject) {
+        User user = (User)userService.loadUserByUsername(request.getRemoteUser());
+        newProject.setUser(user);
+        newProject.setActive(true);
+
+        projectService.addProject(newProject);
+
+        return newProject;
+    }
 
     @GetMapping(path = "/project-totals", produces = "application/json")
     public Map<String, Long> projectTotals() {
 
         Long timespent = projectService.getAllProjectsTimeSpent();
         Long totalProjects = projectService.getAllProjectsNumber();
+
+        if(timespent == null) {
+            timespent = 0L;
+        }
 
         Map<String, Long> map = new HashMap<>(2);
         map.put("totalTime", timespent);
@@ -41,22 +57,49 @@ public class ProjectEndpoint {
 
 
     @GetMapping(path = "/project-time-statistics", produces = "application/json")
-    public List<IProjectTotalTimeStatistics> getProjectTimeStatistics() {
+    public List<IProjectDailyTimeStatistics> getProjectTimeStatistics() {
         return projectService.getProjectTimeStatistics();
     }
 
     @GetMapping(path = "/projects", produces = "application/json")
-    public Page<Project> projects(@RequestParam int currentPage, @RequestParam int pageSize) {
+    public Page<Project> projects(HttpServletRequest request, @RequestParam int currentPage, @RequestParam int pageSize) {
 
         Pageable pageable = PageRequest.of(currentPage, pageSize);
-        return projectService.getAllProjects(pageable);
+
+        User user = (User)userService.loadUserByUsername(request.getRemoteUser());
+
+        Page<Project> projectsPage;
+        if(user.isAdmin()) {
+            projectsPage = projectService.getAllProjects(pageable);
+        } else {
+            projectsPage = projectService.getAllUserProjects(pageable, user);
+        }
+
+        Map<Long, Project> projectsById = new HashMap<Long, Project>();
+
+        List<Project> projects = projectsPage.getContent();
+        for(Project project : projects) {
+            projectsById.put(project.getId(), project);
+        }
+
+        System.out.println(projectsById);
+
+        List<IProjectTotalTimeStatistics> projectTimes = projectService.getProjectsTotalMinutesSpent(projectsById.keySet());
+
+        for(IProjectTotalTimeStatistics projectTime : projectTimes) {
+            System.out.println("Processing project time for ID " + projectTime.getProjectId() + " total time is " + projectTime.getTotalSpentMinutes());
+            projectsById.get(projectTime.getProjectId()).setTotalSpentMinutes(projectTime.getTotalSpentMinutes());
+        }
+
+        return projectsPage;
     }
 
-
     @PostMapping(path = "/book-project", produces = "application/json")
-    public Project bookProject(@RequestParam Long projectId, @RequestParam String startTime, @RequestParam String endTime) throws ParseException {
+    public Project bookProject(HttpServletRequest request, @RequestParam Long projectId, @RequestParam String startTime, @RequestParam String endTime) throws ParseException {
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        User user = (User)userService.loadUserByUsername(request.getRemoteUser());
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
         Date startDatetime = dateFormat.parse(startTime);
         Date endDatetime = dateFormat.parse(endTime);
 
@@ -64,7 +107,7 @@ public class ProjectEndpoint {
 
         ProjectUserTime time = new ProjectUserTime();
         time.setProject(project);
-        //time.setUser(user); TODO
+        time.setUser(user);
         time.setStartTime(startDatetime);
         time.setEndTime(endDatetime);
         time.setEntered(new Date(System.currentTimeMillis()));
@@ -78,52 +121,19 @@ public class ProjectEndpoint {
     @GetMapping(path = "/create-projects", produces = "application/json")
     public String createProjects() throws ParseException {
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat datetimeFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        User user = new User();
+        user.setEmail("admin@test.com");
+        user.setRegistrationPassword("test");
+        user.setFirstName("John");
+        user.setLastName("Doe");
+        user.setAddress("Street 22");
+        user.setCity("MyCity");
+        user.setCountry("MyCountry");
 
-        Date startTime = dateFormat.parse("2020-11-10");
-        Date endTime = dateFormat.parse("2020-12-10");
-
-        Random rand = new Random();
-
-        for(int i=0; i<100; i++) {
-            Project p = new Project();
-            p.setName("Project " + (i+1));
-            p.setStartTime(startTime);
-            p.setEndTime(endTime);
-            p.setTimeSpent(0L);
-            projectService.addProject(p);
-
-            Date startDatetime = datetimeFormat.parse("2020-11-20 15:00:00");
-            Date endDatetime = datetimeFormat.parse("2020-11-20 16:00:00");
-            Date entered = datetimeFormat.parse("2020-11-24 17:00:00");
-
-            for(int j=0; j<7; j++) {
-
-                ProjectUserTime put = new ProjectUserTime();
-                put.setProject(p);
-                put.setStartTime(startDatetime);
-                put.setEndTime(endDatetime);
-                put.setEntered(entered);
-
-                p.addProjectUserTime(put);
-
-                int hour = rand.nextInt(18);
-                Calendar cal = Calendar.getInstance();
-                cal.setTime(startDatetime);
-                cal.add(Calendar.DATE, 1);
-                cal.set(Calendar.HOUR, hour);
-                startDatetime = cal.getTime();
-
-                cal.setTime(endDatetime);
-                cal.add(Calendar.DATE, 1);
-                cal.set(Calendar.HOUR, hour + rand.nextInt(5));
-                endDatetime = cal.getTime();
-
-            }
-
-            projectService.saveProject(p);
-        }
+        Role role = new Role(Role.RoleName.ADMIN.toString());
+        role.setUser(user);
+        user.addRole(role);
+        userService.createUser(user);
 
         return "Done";
     }
@@ -161,7 +171,5 @@ public class ProjectEndpoint {
         return null;
     }
 
-
-
-
 }
+

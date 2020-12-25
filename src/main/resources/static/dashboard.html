@@ -23,10 +23,10 @@
 </head>
 
 <body id="page-top">
-    <div id="wrapper">
+    <div id="wrapper">        
         <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background: rgb(187,190,200);">
             <div class="container-fluid d-flex flex-column p-0">
-                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="/">
                     <div class="sidebar-brand-icon rotate-n-15"><i class="icon-book-open"></i></div>
                     <div class="sidebar-brand-text mx-3"><span>ProjectBook</span></div>
                 </a>
@@ -35,17 +35,17 @@
                     <li class="nav-item">
                         <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="height: 52px;"><img class="border rounded-circle img-profile" src="assets/img/avatars/avatar_pro.png"><span class="d-none d-lg-inline mr-2 text-gray-600 small" style="color: rgb(255,255,255);font-size: 13.6px;border-style: none;text-align: left;margin: 0px;width: 224px;height: 52px;padding: 16px;"><strong>USER</strong></span></a>
                             <div
-                                class="dropdown-menu shadow dropdown-menu-right animated--grow-in"><a class="dropdown-item" href="profile.html"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a>
-                                <div class="dropdown-divider"></div><a class="dropdown-item" href="logout.html"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a></div>
+                                class="dropdown-menu shadow dropdown-menu-right animated--grow-in"><a class="dropdown-item" href="/user-profile"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a>
+                                <div class="dropdown-divider"></div><a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a></div>
             </div>
             </li>
             <li class="nav-item"></li>
-            <li class="nav-item"><a class="nav-link active" href="dashboard.html"><i class="fas fa-tachometer-alt"></i><span>DASHBOARD</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fas fa-user"></i><span>PROFILE</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="projectpage.html"><i class="icon ion-ios-paper-outline"></i>PROJECTS<span></span></a></li>
+            <li class="nav-item"><a class="nav-link active" href="/"><i class="fas fa-tachometer-alt"></i><span>DASHBOARD</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="/user-profile"><i class="fas fa-user"></i><span>PROFILE</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="/projects"><i class="icon ion-ios-paper-outline"></i>PROJECTS<span></span></a></li>
             <li class="nav-item"></li>
             <li class="nav-item"></li>
-            <li class="nav-item"><a class="nav-link" href="logout.html"><i class="far fa-user-circle"></i><span>LOGOUT</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="/logout"><i class="far fa-user-circle"></i><span>LOGOUT</span></a></li>
             </ul>
             <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
     </div>
@@ -113,77 +113,70 @@
         </div>
         <footer class="bg-white sticky-footer">
             <div class="container my-auto">
-                <div class="text-center my-auto copyright"><span>Copyright © BIT Learning 2020</span></div>
+                <div class="text-center my-auto copyright"><span>Copyright © BIT Internet Technologies 2020</span></div>
             </div>
         </footer>
     </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/js/chart.min.js"></script>
-        <script src="assets/js/bs-init.js"></script>
-        <script src="assets/js/Bootstrap-DateTime-Picker-1.js"></script>
-        <script src="assets/js/Bootstrap-DateTime-Picker-2.js"></script>
-        <script src="assets/js/Bootstrap-DateTime-Picker.js"></script>
-        <script src="assets/js/Date-Range-Picker.js"></script>
-        <script src="assets/js/ebs-bootstrap-datepicker-1.js"></script>
-        <script src="assets/js/ebs-bootstrap-datepicker.js"></script>
-        <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.es.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
-        <script src="assets/js/My-Date-Picker.js"></script>
-        <script src="assets/js/theme.js"></script>
-        <script src="assets/js/app.js"></script>
 
-        <script>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/js/chart.min.js"></script>
+	<script src="assets/js/bs-init.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+	<script src="assets/js/jquery.datetimepicker.full.min.js"></script>
+	<script src="assets/js/theme.js"></script>
+	<script src="assets/js/app.js"></script>
 
-            $(document).ready(function() {
-                getProjectTotals(
-                    function(data) {
-                        console.log(data);
-
-                        $("#total-time").html(data.totalTime + " minutes");
-                        $("#total-projects").html(data.totalProjects);
-                    },
-                    function(error) {
-                        console.log(error);
-                    });
-
-                getProjectTimeStatistics(
-                    function(data) {
-                        console.log(data);
-
-                        var labels = [];
-                        var values = [];
-                        for(var i=0; i<data.length; i++) {
-                            labels.push(data[i].day);
-                            values.push(data[i].totalHours);
-                        }
-
-                        var data = {
-                            labels: labels,
-                            datasets: [{
-                                label: 'Total hours',
-                                data: values,
-                            }]
-                        };
-
-                        var ctx = document.getElementById('project-time-statistics-chart');
-                        var myChart = new Chart(ctx, {
-                            type: 'line',
-                            data: data,
-                            options: {}
-                        });
-                    },
-                    function(error) {
-                        console.log(error);
-                    }
-                );
-            });
-
-        </script>
+	<script>
+	
+	    $(document).ready(function() {
+	        getProjectTotals(
+	            function(data) {
+	                console.log(data);                        
+	                                        
+	                $("#total-time").html(formatTimeInHours(data.totalTime));
+	                
+	                $("#total-projects").html(data.totalProjects);
+	            },
+	            function(error) {
+	                console.log(error);
+	            });
+	
+	        getProjectTimeStatistics(
+	            function(data) {
+	                console.log(data);
+	
+	                var labels = [];
+	                var values = [];
+	                for(var i=0; i<data.length; i++) {
+	                    labels.push(data[i].day);
+	                    
+	                    var hours = data[i].totalMinutes / 60;
+	                    values.push(hours.toFixed(2));
+	                }
+	
+	                var data = {
+	                    labels: labels,
+	                    datasets: [{
+	                        label: 'Total hours',
+	                        data: values,
+	                    }]
+	                };
+	
+	                var ctx = document.getElementById('project-time-statistics-chart');
+	                var myChart = new Chart(ctx, {
+	                    type: 'line',
+	                    data: data,
+	                    options: {}
+	                });
+	            },
+	            function(error) {
+	                console.log(error);
+	            }
+	        );
+	    });
+	
+	</script>
 
 
 </body>

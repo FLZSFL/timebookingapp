@@ -20,6 +20,12 @@ public class Role {
 
     private String name;
 
+    /*JoinColumn = Role Entity will have a foreign key name user_id referring to primary
+    * entity called id in the entity Role*/
+
+    /*@OnDelete in hibernate is used when there are joined sub class.
+     * @OnDelete decides whether deleting an entry from database will delete
+     * the rows represented by joined sub class or not*/
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
