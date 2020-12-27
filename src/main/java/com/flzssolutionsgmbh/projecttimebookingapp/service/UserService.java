@@ -47,7 +47,8 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
-    //Credit to https://stackoverflow.com/questions/12974322/does-anyone-know-a-library-containing-all-localized-country-names-in-java/12975050
+    /*Credit to https://stackoverflow.com/questions/12974322/does-anyone-know-a-library-containing-all-localized-country-names-in-java/12975050
+    * This can be used in the later phases*/
     public void generateCountries(){
         Locale locale = Locale.ENGLISH;
         for (String country : Locale.getISOCountries()){
@@ -55,6 +56,7 @@ public class UserService implements UserDetailsService {
         }
         System.out.println("Not Listed");
     }
+
 
     public void updateUser(User user) {
         userRepository.save(user);

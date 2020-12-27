@@ -29,9 +29,12 @@ public interface ProjectRepository extends PagingAndSortingRepository<Project, L
     Long countAllByActiveIsTrue();
 
 
+    /*When using Pageable, Pageable Object is created with certain properties such as
+    * page size, current page number, sorting*/
     @Query(value = "SELECT * FROM project "
             + "WHERE user_id = :user_id", nativeQuery = true)
     Page<Project> findAllUserProjects(Pageable pageable, @Param("user_id") Long userId);
+
 
     @Query(value = "SELECT SUM(EXTRACT(EPOCH FROM end_time - start_time) / 60) FROM PROJECT_USER_TIME", nativeQuery = true)
     Long getAllByTimeSpentTotal();
