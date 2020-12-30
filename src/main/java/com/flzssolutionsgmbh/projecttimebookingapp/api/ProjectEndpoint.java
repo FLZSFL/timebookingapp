@@ -68,6 +68,8 @@ public class ProjectEndpoint {
 
         User user = (User)userService.loadUserByUsername(request.getRemoteUser());
 
+        /*Determining if the user is admin = should see all projects
+        * otherwise only the user's projects will be visible*/
         Page<Project> projectsPage;
         if(user.isAdmin()) {
             projectsPage = projectService.getAllProjects(pageable);
@@ -77,12 +79,14 @@ public class ProjectEndpoint {
 
         Map<Long, Project> projectsById = new HashMap<Long, Project>();
 
+        /*Giving ids to the projects*/
         List<Project> projects = projectsPage.getContent();
         for(Project project : projects) {
             projectsById.put(project.getId(), project);
         }
 
         System.out.println(projectsById);
+
 
         List<IProjectTotalTimeStatistics> projectTimes = projectService.getProjectsTotalMinutesSpent(projectsById.keySet());
 
@@ -118,14 +122,14 @@ public class ProjectEndpoint {
     }
 
 
-    @GetMapping(path = "/create-projects", produces = "application/json")
+    @GetMapping(path = "/create-userAdmin", produces = "application/json")
     public String createProjects() throws ParseException {
 
         User user = new User();
         user.setEmail("admin@test.com");
         user.setRegistrationPassword("test");
-        user.setFirstName("John");
-        user.setLastName("Doe");
+        user.setFirstName("Frenk");
+        user.setLastName("Locmelis");
         user.setAddress("Street 22");
         user.setCity("MyCity");
         user.setCountry("MyCountry");
@@ -137,6 +141,7 @@ public class ProjectEndpoint {
 
         return "Done";
     }
+
 
     @GetMapping(path = "/create-project-times", produces = "application/json")
     public String createProjectTimes() throws ParseException {
@@ -160,6 +165,7 @@ public class ProjectEndpoint {
 
         return "Done";
     }
+
 
     @GetMapping(path = "/project-times", produces = "application/json")
     public List<ProjectUserTime> projectTimes(@RequestParam Long projectId) {

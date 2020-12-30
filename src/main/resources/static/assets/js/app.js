@@ -205,5 +205,35 @@ function formatTimeInHours(minutes) {
 	return hours + "h:" + minutes + "m";
 }
 
+function initCsrf(onSuccess, onError) {
+    $.ajax({
+        type: "GET",
+        url: "/csrf",
+        success: function (data, textStatus, response) {
+            var header = response.getResponseHeader('x-csrf-header');
+            var param = response.getResponseHeader('x-csrf-param');
+            var token = response.getResponseHeader('x-csrf-token');
+
+            $.ajaxSetup({
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader(header, token);
+                }
+            });
+
+            onSuccess && onSuccess({
+                header: header,
+                param: param,
+                token: token,
+            });
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.error(jqXHR, textStatus, errorThrown);
+            onError && onError(errorThrown);
+        }
+    });
+}
+
+/*Function is called automatically*/
+initCsrf();
 
 

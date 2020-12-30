@@ -29,6 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     * /assets/** are publicly available to ensure the loading of CSS
     * the commands hasRole is not used, since the app is thought for Admin and User (both), thus
     * there should be no distinction of both, as only the page /projects should be accessible differently for each
+    * loginPage("/login") = custom loginPage
     userrole*/
 
     /*HTTP Security regulating the HTTP Accesses*/
@@ -37,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/register", "/api/register-user", "/console/**", "/api/create-projects").permitAll()
+                .antMatchers("/register", "/api/register-user", "/console/**", "/api/create-userAdmin", "/csrf").permitAll()
                 .antMatchers("/assets/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -45,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .permitAll()
                 .and()
-                .csrf().disable()
+                //.csrf().disable()
                 .logout()
                 .permitAll();
     }
@@ -58,7 +59,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /*Regulating the role accesses, in our case through userService*/
-    /*Encoding the password, so it is not recognizable*/
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());

@@ -25,7 +25,7 @@
 
 <body class="bg-gradient-primary" style="background: rgb(187,190,200);">
 
-	<div class="alerts-container"></div>
+	<div class="alerts-container" id="alertContainer"></div>
 		
     <div class="container">
                              
@@ -78,6 +78,7 @@
     
     		/*when user types in the password, we reset the validation*/
     		$("#userPassword").change(function() {
+    		    console.log('Hello');
     			$(this)[0].setCustomValidity('');
     		});
     		
@@ -101,7 +102,21 @@
     				passwordInput.setCustomValidity('Passwords do not match!');  
     				passwordInput.reportValidity();
     				return false;
-    			}    			    			
+    			}
+
+    			if(password.length <= 4 || password2.length <= 4){
+    			    passwordInput.setCustomValidity('Password must be longer than 4 characters');
+                    passwordInput.reportValidity();
+                    return false;
+                }
+
+                if(password.length >= 15 || password2.length >= 15){
+                    passwordInput.setCustomValidity('Password must be shorter than 15 characters');
+                    passwordInput.reportValidity();
+                    return false;
+                }
+
+
     			
     			var user = {
     				firstName: $("#userFirstName").val(),

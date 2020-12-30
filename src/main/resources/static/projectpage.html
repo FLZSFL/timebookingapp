@@ -212,7 +212,9 @@
 	   
 	    function updatePagingInfo(page) {
 	        $("#dataTable_info").html("Showing " + page.size + " of " + page.totalElements);
-	
+
+
+	        /*if we are on the first page, it's disabled*/
 	        var paginationHtml = '';
 	        paginationHtml += '<li class="page-item ' + (!page.first ? '' : 'disabled') + '"><a class="page-link" href="javascript:loadPage(0)" aria-label="Previous"><span aria-hidden="true">«</span></a></li>';
 	        for(var i = 0; i < page.totalPages; i++) {
@@ -222,7 +224,8 @@
 	
 	        $("#pagination").html(paginationHtml);
 	    }
-	
+
+	    /*loads the page passed the number*/
 	    function loadPage(page) {
 	
 	        var pageSize = $("#pageSize").val();

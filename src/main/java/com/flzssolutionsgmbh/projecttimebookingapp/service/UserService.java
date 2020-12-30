@@ -11,8 +11,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 @Service
@@ -39,11 +37,16 @@ public class UserService implements UserDetailsService {
 
     public void createAdmin(User user){
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+        System.out.println("USER PASSWORD: " + user.getRegistrationPassword());
+
+        System.out.println("ENCODED=" + encoder.encode(user.getRegistrationPassword()));
         user.setPassword(encoder.encode(user.getRegistrationPassword()));
+
         Role userRole = new Role(Role.RoleName.ADMIN.toString());
-        List<Role> roles = new ArrayList<>();
-        roles.add(userRole);
-        user.setRoles(roles);
+
+        userRole.setUser(user);
+        user.addRole(userRole);
         userRepository.save(user);
     }
 
