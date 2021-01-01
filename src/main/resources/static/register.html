@@ -35,7 +35,7 @@
                     <div class="col-lg-7 col-xl-8 offset-xl-2">
                         <div class="p-5">
                             <div class="text-center">
-                                <h4 class="text-dark mb-4">Create an Account!</h4>
+                                <h4 class="text-dark mb-4">Join TimeBookingApp</h4>
                             </div>
                             <form id="register-user-form" class="user">
                                 <div class="form-group row">
@@ -124,7 +124,9 @@
     				email: $("#userEmail").val(),
     				registrationPassword: $("#userPassword").val(),
     			};    			    	
-    			
+
+                /*document.location.href = setting up the URL (String)*/
+                /*If the user has registered, after 2 seconds the user is redirected to indexpage*/
     			registerUser(
    		            user,
    		            function(data) {   		                

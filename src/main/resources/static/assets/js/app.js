@@ -71,7 +71,7 @@ function getProjectTotals(onSuccess, onError) {
     });
 }
 
-
+/*Function for getting consolidated data for the Dashboard*/
 function getProjectTimeStatistics(onSuccess, onError) {
     $.ajax({
         type: "GET",
@@ -106,6 +106,7 @@ function registerUser(user, onSuccess, onError) {
     });
 }
 
+
 function loadUser(onSuccess, onError) {
 	$.ajax({
         type: "GET",
@@ -120,6 +121,8 @@ function loadUser(onSuccess, onError) {
     });
 }
 
+
+/*Function for Profile Page (fn, ln, e-mail)*/
 function updateUser(user, onSuccess, onError) {
 	$.ajax({
         type: "PUT",
@@ -137,6 +140,7 @@ function updateUser(user, onSuccess, onError) {
     });
 }
 
+/*Function for Profile Page (adress, city, country)*/
 function updateUserInfo(user, onSuccess, onError) {
 	$.ajax({
         type: "PUT",
@@ -154,6 +158,7 @@ function updateUserInfo(user, onSuccess, onError) {
     });
 }
 
+/*Function for Profile Page (password)*/
 function changePassword(password, onSuccess, onError) {
 	$.ajax({
         type: "POST",
@@ -190,6 +195,7 @@ function showError(message) {
 			'</div>');
 }
 
+
 function showMessage(html, autoHide) {
 	var container = $(".alerts-container");
 	container.html(html);
@@ -203,6 +209,7 @@ function showMessage(html, autoHide) {
 	}	
 }
 
+/*Calculating the hours and minutes spent*/
 function formatTimeInHours(minutes) {
 	var hours = Math.floor(minutes / 60);
 	minutes = minutes - hours * 60;

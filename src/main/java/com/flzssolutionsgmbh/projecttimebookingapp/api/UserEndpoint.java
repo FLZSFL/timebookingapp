@@ -21,11 +21,13 @@ public class UserEndpoint {
         return newUser;
     }
 
+    /*Getting the user data*/
     @GetMapping(path = "/user", produces = "application/json")
     public User user(HttpServletRequest request) {
         return (User)userService.loadUserByUsername(request.getRemoteUser());
     }
 
+    /*Updating the user data*/
     @PutMapping(path = "/user", produces = "application/json")
     public User updateUser(HttpServletRequest request, @RequestBody User updatedUser) {
         User user = (User)userService.loadUserByUsername(request.getRemoteUser());

@@ -82,9 +82,9 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Start date</th>
-                                    <th>End date</th>
-                                    <th class="text-right">Time spent</th>
+                                    <th>Project start</th>
+                                    <th>Project end</th>
+                                    <th class="text-right">Total time spent</th>
                                     <th></th>
                                 </tr>
                                 </thead>
@@ -95,9 +95,9 @@
                                 <tr>
                                     <td><strong>ID</strong></td>
                                     <td><strong>Name</strong></td>
-                                    <td><strong>Start date</strong></td>
-                                    <td><strong>End date</strong></td>
-                                    <td class="text-right"><strong>Time spent</strong></td>
+                                    <td><strong>Project start</strong></td>
+                                    <td><strong>Project end</strong></td>
+                                    <td class="text-right"><strong>Total time spent</strong></td>
                                     <td></td>
                                 </tr>
                                 </tfoot>
@@ -109,6 +109,7 @@
                             </div>
                             <div class="col-md-6">
                                 <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                    <!--id pagination is the element where the projects will be added to -->
                                     <ul id="pagination" class="pagination">
                                         <!-- 
                                         <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
@@ -127,7 +128,7 @@
         </div>
         <footer class="bg-white sticky-footer">
             <div class="container my-auto">
-                <div class="text-center my-auto copyright"><span>Copyright © BIT Learning 2020</span></div>
+                <div class="text-center my-auto copyright"><span>Copyright © FHNW BIT Internet Technologies 2020</span></div>
             </div>
         </footer>
     </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
@@ -152,17 +153,17 @@
 	
 	                    <div class="md-form mb-4">
 	
-	                        <label>Start Date</label>
+	                        <label>Project start</label>
 	                        <input id="newProjectStartDate" type="text" class="form-control validate" name="newProjectStartDate" required autocomplete="off">
 	                    </div>
 	
 	                    <div class="md-form mb-4">
-	                        <label>End Date</label>
+	                        <label>Project end</label>
 	                        <input id="newProjectEndDate" type="text" class="form-control validate" name="newProjectEndDate" required autocomplete="off">
 	                    </div>
 	                </div>
 	                <div class="modal-footer d-flex justify-content-center">
-	                    <button class="btn btn-info btn-block" type="submit" >Send</button>
+	                    <button class="btn btn-info btn-block" type="submit" >Create</button>
 	                </div>
 	            </form>
 	        </div>
@@ -173,7 +174,7 @@
 	    <div class="modal-dialog" role="document">
 	        <div class="modal-content">
 	            <div class="modal-header">
-	                <h4 class="modal-title w-100 font-weight-bold">Book Project</h4>
+	                <h4 class="modal-title w-100 font-weight-bold">Book hours</h4>
 	                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	                    <span aria-hidden="true">&times;</span>
 	                </button>
@@ -182,17 +183,17 @@
 	                <input type="hidden" id="projectId" value="" />
 	                <div class="modal-body mx-3">
                        	<div class="md-form mb-4">	
-	                        <label>Start Date</label>
+	                        <label>Work started</label>
 	                        <input id="bookStartTime" type="text" class="form-control validate" name="bookStartTime" required autocomplete="off">
 	                    </div>
 	
 	                    <div class="md-form mb-4">
-	                        <label>End Date</label>
+	                        <label>Work ended</label>
 	                        <input id="bookEndTime" type="text" class="form-control validate" name="bookEndTime" required autocomplete="off">
 	                    </div>
 	                </div>
 	                <div class="modal-footer d-flex justify-content-center">
-	                    <button class="btn btn-info btn-block" type="submit" >Send</button>
+	                    <button class="btn btn-info btn-block" type="submit" >Book</button>
 	                </div>
 	            </form>
 	        </div>
