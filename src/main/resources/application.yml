@@ -24,7 +24,7 @@ spring:
             non_contextual_creation: true
     hibernate:
       ## create ## can be changed to "update" if we don't want the data to be wiped on every restart
-      ddl-auto: create
+      ddl-auto: update
   session:
     store-type: jdbc
     timeout:

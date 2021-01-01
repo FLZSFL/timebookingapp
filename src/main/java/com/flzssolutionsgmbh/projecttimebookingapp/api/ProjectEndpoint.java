@@ -121,18 +121,18 @@ public class ProjectEndpoint {
         return project;
     }
 
-
+    /*Creating the userAdmin*/
     @GetMapping(path = "/create-userAdmin", produces = "application/json")
     public String createProjects() throws ParseException {
 
         User user = new User();
-        user.setEmail("admin@test.com");
-        user.setRegistrationPassword("test");
+        user.setEmail("frenk.locmelis@students.fhnw.ch");
+        user.setRegistrationPassword("bitapp");
         user.setFirstName("Frenk");
         user.setLastName("Locmelis");
-        user.setAddress("Street 22");
-        user.setCity("MyCity");
-        user.setCountry("MyCountry");
+        user.setAddress("Zinsmattweg 23");
+        user.setCity("Oberdorf BL");
+        user.setCountry("Switzerland");
 
         Role role = new Role(Role.RoleName.ADMIN.toString());
         role.setUser(user);

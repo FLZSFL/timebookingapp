@@ -1,4 +1,5 @@
-
+/*window.location.protocol returns = http:*/
+/*window.location.host returns = hostname + port of URL*/
 var serviceEndpointURL = window.location.protocol + "//" + window.location.host;
 
 
@@ -17,6 +18,8 @@ function getProjects(currentPage, pageSize, onSuccess, onError) {
     });
 }
 
+
+/*JSON Stringify converts the JavaScript values to JSON-String, so the backend can read it*/
 function createProject(project, onSuccess, onError) {
     console.log('Creating project', project);
 
@@ -166,12 +169,14 @@ function changePassword(password, onSuccess, onError) {
     });
 }
 
+/*Success Notification Bootstrap*/
 function showSuccess(message) {		
 	showMessage('<div class="alert alert-success text-center" role="alert">' +
 				message +
 			'</div>', true);
 }
 
+/*Error Notification Bootstrap*/
 function showError(message) {
 	if(!message || message == '') {
 		message = 'The system error has happened!';

@@ -78,7 +78,6 @@
     
     		/*when user types in the password, we reset the validation*/
     		$("#userPassword").change(function() {
-    		    console.log('Hello');
     			$(this)[0].setCustomValidity('');
     		});
     		
@@ -88,7 +87,8 @@
     		});
     		
     		$("#register-user-form").on("submit", function(event) {
-    			event.preventDefault();
+    			//Not letting the default behavior to proceed
+    		    event.preventDefault();
     			
     			//reset custom validity
     			var passwordInput = document.getElementById('userPassword');
@@ -117,7 +117,7 @@
                 }
 
 
-    			
+    			//Creating user object
     			var user = {
     				firstName: $("#userFirstName").val(),
     				lastName: $("#userLastName").val(),

@@ -39,8 +39,9 @@
                             <div class="col-lg-6 offset-xl-3">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h4 class="text-dark mb-4">Welcome Back!</h4>
+                                        <h4 class="text-dark mb-4">Welcome to Time Booking App!</h4>
                                     </div>
+                                    <!-- POST done to Backend  -->
                                     <form class="user" th:action="@{/login}" method="post">
                                         <input type="hidden" id="csrf-param" />
                                         <div class="form-group"><input class="form-control form-control-user" type="email" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="username" required></div>
@@ -82,7 +83,10 @@
 
 
 		    /*params is object of class URLsearchparams, if the URL contains 'error'
-		    * then the showError function will be triggered*/
+		    * then the showError function will be triggered
+		    *
+		    * document.location.search = label after '?' sign
+		    * */
 			var params = new URLSearchParams(document.location.search);
 			if(params.has('error')) {
 				showError('Failed to login!');

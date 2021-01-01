@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 /*WebSecurityConfigurerAdapter enables the extension of HTTPSecurity method*/
@@ -38,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/register", "/api/register-user", "/console/**", "/api/create-userAdmin", "/csrf").permitAll()
+                .antMatchers("/register", "/api/register-user", "/console/**", "/api/create-userAdmin", "/csrf", "/logout").permitAll()
                 .antMatchers("/assets/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -48,7 +49,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 //.csrf().disable()
                 .logout()
-                .permitAll();
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login")
+                .invalidateHttpSession(true)
+                .deleteCookies()
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/403");
+                //permitAll();
     }
 
     /*Password encoder is mandatory for the newest versions of SpringBoot
