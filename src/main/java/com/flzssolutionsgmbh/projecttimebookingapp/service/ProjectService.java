@@ -46,9 +46,17 @@ public class ProjectService {
         projectRepository.delete(project);
     }
 
-    //For dashboard
+    //For dashboard (admin)
     public Long getAllProjectsNumber(){
         return projectRepository.countAllByActiveIsTrue();
+    }
+
+    //For dashboard
+    public Long getAllProjectsNumberById(User user){
+         List<Project> projects = projectRepository.findByUser(user);
+         Long projectSize = (long) projects.size();
+
+        return projectSize;
     }
 
 
@@ -56,6 +64,10 @@ public class ProjectService {
         return projectRepository.getAllByTimeSpentTotal();
     }
 
+
+    public Long getAllProjectsTimeSpentById(User user){
+        return projectRepository.getAllByTimeSpentTotalById(user.getId());
+    }
 
     public List<IProjectDailyTimeStatistics>getProjectTimeStatistics(){
         return projectRepository.getProjectTimeStatistics();

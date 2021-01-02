@@ -29,6 +29,7 @@ public interface ProjectRepository extends PagingAndSortingRepository<Project, L
     Long countAllByActiveIsTrue();
 
 
+
     /*When using Pageable, Pageable Object is created with certain properties such as
     * page size, current page number, sorting*/
     @Query(value = "SELECT * FROM project "
@@ -38,6 +39,10 @@ public interface ProjectRepository extends PagingAndSortingRepository<Project, L
 
     @Query(value = "SELECT SUM(EXTRACT(EPOCH FROM end_time - start_time) / 60) FROM PROJECT_USER_TIME", nativeQuery = true)
     Long getAllByTimeSpentTotal();
+
+    /*Searching for particular user instead retrieving total data of all users, 02.01.*/
+    @Query(value = "SELECT SUM(EXTRACT(EPOCH FROM end_time - start_time) / 60) FROM PROJECT_USER_TIME WHERE user_id = :user_id", nativeQuery = true)
+    Long getAllByTimeSpentTotalById(@Param("user_id") Long userId);
 
     /*H2 database*/
     @Query(value = "SELECT FORMATDATETIME(t.START_TIME, 'yyyy-MM-dd') AS day, SUM(EXTRACT(EPOCH FROM end_time - start_time) / 60) AS totalMinutes "

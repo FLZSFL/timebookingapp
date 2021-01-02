@@ -114,7 +114,7 @@
         </div>
         <footer class="bg-white sticky-footer">
             <div class="container my-auto">
-                <div class="text-center my-auto copyright"><span>Copyright © BIT Internet Technologies 2020</span></div>
+                <div class="text-center my-auto copyright"><span>Copyright © FHNW BIT Internet Technologies 2020</span></div>
             </div>
         </footer>
     </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
@@ -142,7 +142,8 @@
 	            function(error) {
 	                console.log(error);
 	            });
-	
+
+            /*Credit to the chart from https://stackoverflow.com/questions/38493564/chart-area-background-color-chartjs#:~:text=There%20is%20no%20built%2Din,JSFiddle.&text=If%20you%20want%20to%20fill,js%20plugin.*/
 	        getProjectTimeStatistics(
 	            function(data) {
 	                console.log(data);
@@ -165,12 +166,44 @@
 	                };
 	
 	                var ctx = document.getElementById('project-time-statistics-chart');
+	                ctx.style.backgroundColor =  'rgb(255,255,255)';
+                    Chart.defaults.global.defaultColor = 'rgb(78,115,223, 0.5)';
 	                var myChart = new Chart(ctx, {
-	                    type: 'line',
+	                    type: 'bar',
 	                    data: data,
-	                    options: {}
+	                    options: {
+	                        showLines: true,
+                            scales: {
+                                yAxes: [{
+                                    ticks:{
+                                        fontColor : "#ffffff",
+
+                                    },
+                                    gridLines:{
+                                        color: "#ffffff",
+                                        zeroLineColor :"#4e73df",
+
+                                    },
+                                    stacked: true
+                                }],
+                                xAxes: [{
+                                    ticks:{
+                                        fontColor : "#4e73df",
+
+                                    },
+                                    gridLines:{
+                                        color: "#ffffff",
+                                        zeroLineColor :"#4e73df",
+
+                                    }
+                                }]
+                            },
+                            responsive:true,
+                        },
+
 	                });
 	            },
+
 	            function(error) {
 	                console.log(error);
 	            }

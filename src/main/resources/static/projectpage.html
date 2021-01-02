@@ -217,7 +217,8 @@
 	        $("#dataTable_info").html("Showing " + page.size + " of " + page.totalElements);
 
 
-	        /*if we are on the first page, it's disabled*/
+	        /*if we are on the first or i page, it's disabled*/
+            /**/
 	        var paginationHtml = '';
 	        paginationHtml += '<li class="page-item ' + (!page.first ? '' : 'disabled') + '"><a class="page-link" href="javascript:loadPage(0)" aria-label="Previous"><span aria-hidden="true">«</span></a></li>';
 	        for(var i = 0; i < page.totalPages; i++) {
@@ -228,11 +229,13 @@
 	        $("#pagination").html(paginationHtml);
 	    }
 
-	    /*loads the page passed the number*/
+	    /*loads the number of projects, which will be chosen from the element #pageSize
+	    (it can be chosen 1, 5, 10, 25, 50, 100)*/
 	    function loadPage(page) {
 	
 	        var pageSize = $("#pageSize").val();
-	
+
+            /*Current page and page size is passed throuhg parameters*/
 	        getProjects(
 	            page,
 	            pageSize,
@@ -274,7 +277,8 @@
 	        );
 	
 	    }
-	    
+
+        /*backdrop static means, the modal won't close by clicking outside of the window*/
 	    function setupBookingModal() {
 	    	$('#bookProjectModal').modal({
 	            backdrop: 'static',

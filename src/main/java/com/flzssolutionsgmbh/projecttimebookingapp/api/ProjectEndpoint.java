@@ -39,10 +39,25 @@ public class ProjectEndpoint {
     }
 
     @GetMapping(path = "/project-totals", produces = "application/json")
-    public Map<String, Long> projectTotals() {
+    public Map<String, Long> projectTotals(HttpServletRequest request) {
 
-        Long timespent = projectService.getAllProjectsTimeSpent();
-        Long totalProjects = projectService.getAllProjectsNumber();
+
+        Long timespent;
+        Long totalProjects;
+        User user = (User)userService.loadUserByUsername(request.getRemoteUser());
+
+
+        if(user.isAdmin()) {
+            timespent = projectService.getAllProjectsTimeSpent();
+            totalProjects = projectService.getAllProjectsNumber();
+        } else {
+            timespent = projectService.getAllProjectsTimeSpentById(user);
+            totalProjects = projectService.getAllProjectsNumberById(user);
+        }
+
+
+
+
 
         if(timespent == null) {
             timespent = 0L;
