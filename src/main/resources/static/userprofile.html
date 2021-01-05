@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Profile</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="assets/css/Bootstrap-Calendar.css">
+    <link rel="stylesheet" href="assets/css/ebs-bootstrap-datepicker-1.css">
+    <link rel="stylesheet" href="assets/css/ebs-bootstrap-datepicker-2.css">
+    <link rel="stylesheet" href="assets/css/ebs-bootstrap-datepicker-3.css">
+    <link rel="stylesheet" href="assets/css/ebs-bootstrap-datepicker-4.css">
+    <link rel="stylesheet" href="assets/css/ebs-bootstrap-datepicker.css">
+    <link rel="stylesheet" href="assets/css/Form-Select---Full-Date---Month-Day-Year.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body id="page-top">
+
+	<div class="alerts-container"></div>
+	
+    <div id="wrapper">
+        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background: rgb(187,190,200);">
+            <div class="container-fluid d-flex flex-column p-0">
+                <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="/">
+                    <div class="sidebar-brand-icon rotate-n-15"></div>
+                    <div class="sidebar-brand-text mx-3"><span></span></div>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <ul class="nav navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item">
+                        <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="height: 52px;"><img class="border rounded-circle img-profile" src="assets/img/avatars/avatar_pro.png"><span class="d-none d-lg-inline mr-2 text-gray-600 small" style="color: rgb(255,255,255);font-size: 13.6px;border-style: none;text-align: left;margin: 0px;width: 224px;height: 52px;padding: 16px;"><strong>USER</strong></span></a>
+                            <!-- Under User the next Menu
+                       	    <div class="dropdown-menu shadow dropdown-menu-right animated--grow-in">
+                       		<a class="dropdown-item" href="/user-profile"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Profile</a>
+                       		<a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings</a>
+                       		<a class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Activity log</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a>-->
+                        </div>
+
+            </li>
+            <li class="nav-item"></li>
+            <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-tachometer-alt"></i><span>DASHBOARD</span></a></li>
+            <li class="nav-item"><a class="nav-link active" href="/user-profile"><i class="fas fa-user"></i><span>PROFILE</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="/projects"><i class="icon ion-ios-paper-outline"></i>PROJECTS<span></span></a></li>
+            <li class="nav-item"></li>
+            <li class="nav-item"></li>
+            <li class="nav-item"><a class="nav-link" href="/logout"><i class="far fa-user-circle"></i><span>LOGOUT</span></a></li>
+            </ul>
+            <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
+    </div>
+    </nav>
+
+
+    <div class="d-flex flex-column" id="content-wrapper">                
+        
+        <div id="content">            
+            <div class="container-fluid">
+                <h3 class="text-dark mb-4"></h3>
+                <div class="row mb-3">
+                    <div class="col-lg-8">
+                        <div class="row mb-3 d-none">
+                            <div class="col">
+                                <div class="card text-white bg-primary shadow">
+                                    <div class="card-body">
+                                        <div class="row mb-2">
+                                            <div class="col">
+                                                <p class="m-0">Peformance</p>
+                                                <p class="m-0"><strong>65.2%</strong></p>
+                                            </div>
+                                            <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
+                                        </div>
+                                        <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card text-white bg-success shadow">
+                                    <div class="card-body">
+                                        <div class="row mb-2">
+                                            <div class="col">
+                                                <p class="m-0">Peformance</p>
+                                                <p class="m-0"><strong>65.2%</strong></p>
+                                            </div>
+                                            <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
+                                        </div>
+                                        <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="card shadow mb-3">
+                                    <div class="card-header py-3">
+                                        <p class="text-primary m-0 font-weight-bold">User Settings</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="user-form">
+                                            <div class="form-row">                                                
+                                                <div class="col">
+                                                    <div class="form-group"><label for="email"><strong>Email Address</strong></label><input class="form-control" type="email" placeholder="Please enter the email" id="email" name="email" required></div>
+                                                </div>
+                                                <div class="col">
+                                                	<!-- We don't have a username in the User domain
+                                                    <div class="form-group"><label for="username"><strong>Username</strong></label><input class="form-control" type="text" placeholder="Please enter your username" id="username" name="username" required></div>
+                                                    -->
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <div class="form-group"><label><strong>First Name</strong></label><input class="form-control" type="text" placeholder="Please enter your first name" id="firstName" name="firstName" required></div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group"><label><strong>Last Name</strong></label><input class="form-control" type="text" placeholder="Please enter your last name" id="lastName" name="lastName" required></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group"><button class="btn btn-primary btn-sm bounce animated" id="testingJsonBtn" type="submit">Save Settings</button></div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="card shadow mb-3">
+                                    <div class="card-header py-3">
+                                        <p class="text-primary m-0 font-weight-bold">Contact Settings</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="user-info-form">
+                                            <div class="form-group"><label for="address"><strong>Address</strong></label><input class="form-control" type="text" placeholder="Please enter your address" id="address" name="address" required></div>
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <div class="form-group"><label for="city"><strong>City</strong></label><input class="form-control" type="text" placeholder="Please enter your city" id="city" name="city" required></div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group"><label for="country"><strong>Country</strong></label><input class="form-control" type="text" placeholder="Please enter your country" id="country" name="country" required></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group"><button class="btn btn-primary btn-sm bounce animated" type="submit">Save&nbsp;Settings</button></div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="card shadow">
+                                    <div class="card-header py-3">
+                                        <p class="text-primary m-0 font-weight-bold">Password Settings</p>
+                                    </div>
+                                    <div class="card-body">                                    	
+                                        <form id="user-password-form">
+                                            <div class="form-row">
+                                                <div class="col">
+                                                    <div class="form-group"><label for="password"><strong>New password</strong></label><input class="form-control" type="password" placeholder="" id="password" name="password" required></div>
+                                                </div>
+                                                <div class="col">
+                                                    <div class="form-group"><label for="passwordRepeat"><strong>Repeat new password</strong></label><input class="form-control" type="password" placeholder="" id="passwordRepeat" name="passwordRepeat" required></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group"><button class="btn btn-primary btn-sm bounce animated" type="submit">Change&nbsp;Password</button></div>
+                                        </form>                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow mb-5"></div>
+            </div>
+        </div>
+        <footer class="bg-white sticky-footer">
+            <div class="container my-auto">
+                <div class="text-center my-auto copyright"><span>Copyright © FHNW BIT Internet Technologies 2020</span></div>
+            </div>
+        </footer>
+    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/js/chart.min.js"></script>
+	<script src="assets/js/bs-init.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+	<script src="assets/js/theme.js"></script>
+	<script src="assets/js/app.js"></script>
+
+    <script>
+        
+        $(document).ready(function() {
+        	
+        	loadUser(
+       			function(data) {
+                	console.log('Loaded user', data);
+                	
+                	$("#email").val(data.email);
+                	$("#firstName").val(data.firstName);
+                	$("#lastName").val(data.lastName);
+                	$("#address").val(data.address);
+                	$("#city").val(data.city);
+                	$("#country").val(data.country);
+                	
+              	},
+              	function(error) {
+              		showError(error);
+             	}
+        	);
+        	
+        	$("#user-form").on("submit", function(event) {
+        		event.preventDefault();
+        		
+        		var user = {
+               		email: $("#email").val(),
+               		firstName: $("#firstName").val(),
+               		lastName: $("#lastName").val(),
+               	};  
+        
+        		updateUser(
+        			user,
+        			function(data) {
+        				showSuccess('User settings were successfully updated!')
+        			},
+        			function(error) {
+        				showError(error);
+        			},
+        		);
+        		
+        		return false;
+        	});
+        	
+        	$("#user-info-form").on("submit", function(event) {      
+        		event.preventDefault();
+        		
+        		var user = {
+               		address: $("#address").val(),
+               		city: $("#city").val(),
+               		country: $("#country").val(),
+               	};  
+        
+        		updateUserInfo(
+        			user,
+        			function(data) {
+        				showSuccess('Contact settings were successfully updated!')
+        			},
+        			function(error) {
+        				showError(error);
+        			},
+        		);
+        		
+        		return false;
+        	});
+        	
+        	/*when user types in the password, we reset the validation*/
+        	$("#password").change(function() {
+    			$(this)[0].setCustomValidity('');
+    		});
+    		
+        	/*when user types in the password, we reset the validation*/
+    		$("#passwordRepeat").change(function() {
+    			$("#password")[0].setCustomValidity('');
+    		});
+        	
+        	$("#user-password-form").on("submit", function(event) {
+        		event.preventDefault();
+        		
+        		//reset custom validity
+    			var passwordInput = document.getElementById('password');
+    			passwordInput.setCustomValidity('');    			
+    			
+    			var password = $("#password").val();
+    			var password2 = $("#passwordRepeat").val();
+        		       
+    			if(password !== password2) {
+    				//for displaying a browser validation message we have to call the setCustomValidity on the html input element, not jquery
+    				passwordInput.setCustomValidity('Passwords do not match!');  
+    				passwordInput.reportValidity();
+    				return false;
+    			}  
+    			
+        		changePassword(
+        			password,
+        			function(data) {
+        				showSuccess('The password was successfully changed!');
+        			},
+        			function(error) {
+        				showError(error);
+        			}
+        		);
+        	});
+        	
+        });
+        
+    </script>
+    
+</body>
+
+</html>

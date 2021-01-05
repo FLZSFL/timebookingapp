@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: ${JDBC_DATABASE_URL}
+    username: ${JDBC_DATABASE_USERNAME}
+    password: ${JDBC_DATABASE_PASSWORD}
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    hibernate:
+      ## create ## can be changed to "update" if we don't want the data to be wiped on every restart
+      ddl-auto: create-drop
+    session:
+      store-type: jdbc
+      timeout:
+        seconds: 900
+      jdbc:
+        initialize-schema: always
+
+security:
+  token:
+    secret: ${TOKEN_SECRET}
