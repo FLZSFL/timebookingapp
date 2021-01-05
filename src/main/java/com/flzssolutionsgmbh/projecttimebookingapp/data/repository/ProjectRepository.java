@@ -45,18 +45,18 @@ public interface ProjectRepository extends PagingAndSortingRepository<Project, L
     Long getAllByTimeSpentTotalById(@Param("user_id") Long userId);
 
     /*H2 database*/
-    @Query(value = "SELECT FORMATDATETIME(t.START_TIME, 'yyyy-MM-dd') AS day, SUM(EXTRACT(EPOCH FROM end_time - start_time) / 60) AS totalMinutes "
-            + "FROM PROJECT_USER_TIME t "
-            + "GROUP BY FORMATDATETIME(t.START_TIME, 'yyyy-MM-dd')", nativeQuery = true)
-    List<IProjectDailyTimeStatistics> getProjectTimeStatistics();
+//    @Query(value = "SELECT FORMATDATETIME(t.START_TIME, 'yyyy-MM-dd') AS day, SUM(EXTRACT(EPOCH FROM end_time - start_time) / 60) AS totalMinutes "
+//            + "FROM PROJECT_USER_TIME t "
+//            + "GROUP BY FORMATDATETIME(t.START_TIME, 'yyyy-MM-dd')", nativeQuery = true)
+//    List<IProjectDailyTimeStatistics> getProjectTimeStatistics();
     /*End of H2 database*/
 
     /*Postgres database*/
-//    @Query(value = "SELECT DATE(t.start_time) AS day, SUM(EXTRACT(EPOCH FROM t.end_time - t.start_time) / 60) AS totalMinutes "
-//    		+ "FROM project_user_time t "
-//    		+ "GROUP BY DATE(t.start_time) "
-//    		+ "ORDER BY day", nativeQuery = true)
-//    List<IProjectDailyTimeStatistics> getProjectTimeStatistics();
+   @Query(value = "SELECT DATE(t.start_time) AS day, SUM(EXTRACT(EPOCH FROM t.end_time - t.start_time) / 60) AS totalMinutes "
+   		+ "FROM project_user_time t "
+   		+ "GROUP BY DATE(t.start_time) "
+   		+ "ORDER BY day", nativeQuery = true)
+    List<IProjectDailyTimeStatistics> getProjectTimeStatistics();
     /*End of Postgres database*/
 
 }

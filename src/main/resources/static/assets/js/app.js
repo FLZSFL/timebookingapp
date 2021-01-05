@@ -217,6 +217,9 @@ function formatTimeInHours(minutes) {
 	return hours + "h:" + minutes + "m";
 }
 
+/*A CSRF secure application assigns a unique CSRF token for every user session.
+These tokens are inserted within hidden parameters of HTML forms related to critical
+server-side operations. They are then sent to client browsers.*/
 function initCsrf(onSuccess, onError) {
     $.ajax({
         type: "GET",
@@ -243,6 +246,16 @@ function initCsrf(onSuccess, onError) {
             onError && onError(errorThrown);
         }
     });
+}
+
+/*Generating random colors for Dashboard bars*/
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 5; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }
 
 /*Function is called automatically*/
