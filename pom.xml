@@ -8,6 +8,17 @@
         <version>2.3.4.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.flzssolutionsgmbh.projecttimebookingapp.ProjecttimebookingappApplication</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <groupId>com.flzssolutionsgmbh</groupId>
     <artifactId>projecttimebookingapp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
