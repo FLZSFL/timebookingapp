@@ -38,6 +38,7 @@ public class ProjectEndpoint {
         return newProject;
     }
 
+
     @GetMapping(path = "/project-totals", produces = "application/json")
     public Map<String, Long> projectTotals(HttpServletRequest request) {
 
